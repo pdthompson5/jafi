@@ -1,6 +1,6 @@
 
-from error_reporting import report_error
-from jafi_token import Token, TokenType
+from jafi.error_reporting import report_error
+from jafi.jafi_token import Token, TokenType
 
 import logging
 
@@ -37,7 +37,7 @@ class Scanner:
     def scan(self):
         while not self.is_at_end():
             self.scan_token()
-        self.add_token(("\0", TokenType.EOF))
+        self.add_token(("", TokenType.EOF))
         return self.tokens
 
     def scan_token(self):
@@ -63,6 +63,7 @@ class Scanner:
             elif current_char == "\n": self.line += 1
             elif current_char == '"' : self.string()
             elif self.is_digit(current_char): self.number(current_char)
+            else: self.identifier(current_char)
 
             return
             
@@ -116,7 +117,19 @@ class Scanner:
         while not self.is_at_end() and self.peek() != '"':
             if(self.peek() == '\n'): self.line += 1
             string += self.advance()
-        if self.is_at_end() or self.advance() != '"':
+        if self.is_at_end():
             report_error("Unterminated String", self.line)
+            return
+        self.advance() #consume closing '"'"
 
         self.add_token((string, TokenType.STRING, string))
+
+    def identifier(self, name: str):
+        # read in name until whitespace
+        while not self.is_at_end() and not self.peek().isspace():
+            name += self.advance()
+        
+        if name in self.keywords.keys():
+            self.add_token((name, self.keywords[name]))
+        else:
+            self.add_token((name, TokenType.IDENTIFIER))

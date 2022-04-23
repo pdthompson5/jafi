@@ -5,7 +5,7 @@
 import logging
 import sys
 
-from scanner import Scanner
+from jafi.scanner import Scanner
 
 
 

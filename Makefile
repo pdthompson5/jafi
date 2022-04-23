@@ -1,24 +1,24 @@
 
 .PHONY: jafi
 jafi:
-	python3 jafi
+	python jafi
 
 .PHONY: jafi_debug
 jafi_debug:
-	python3 jafi debug
+	python jafi debug
 
 .PHONY: jafi_info
 jafi_info:
-	python3 jafi info 
+	python jafi info 
 
 
 .PHONY: jafi_interactive
 jafi_interactive:
-	python3 jafi_interactive
+	python jafi_interactive
 
 .PHONY: test
 test:
-	pytest tests/*
+	python -m pytest tests/*
 
 .PHONY: clean
 clean:
