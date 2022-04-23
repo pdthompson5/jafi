@@ -1,15 +1,21 @@
 
 # What do I need this class to do:
 # Open file, read contents, scanner -> parser -> interpreter 
-# 
-# 
 
+import logging
 import sys
+
+from scanner import Scanner
+
+
+
+    
+
 
 class Jafi:
 
-    def report_error(self, message: str):
-        print("[Jafi Error] " + message, file=sys.stderr)
+    def __init__(self, log_level):
+        self.log_level = log_level
 
     def read_file(self, filename: str) -> str:
         try:
@@ -22,9 +28,30 @@ class Jafi:
 
     def run_file(self, filename: str):
         file_contents = self.read_file(filename)
-        print(file_contents)
-        
-        
-jafi = Jafi()
-jafi.run_file("test.jaf")
+        scanner = Scanner(file_contents, self.log_level)
+        tokens = scanner.scan()
 
+        for token in tokens:
+            print(token)
+        
+        
+
+
+if __name__ == "__main__":
+    if len(sys.argv) == 2:
+        log_map = {
+            "debug": logging.DEBUG,
+            "info": logging.INFO,
+            "critical" : logging.CRITICAL,
+            "error" : logging.ERROR
+        }
+        try:
+            level = log_map[sys.argv[1]]    
+        except:
+            level = logging.ERROR
+        jafi = Jafi(level)
+    else:
+        jafi = Jafi(logging.ERROR)
+    jafi.run_file("test.jafi")
+
+    
