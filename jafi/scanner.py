@@ -57,7 +57,8 @@ class Scanner:
         try:
             type_fetched = token_map[current_char]
         except:
-            if current_char == " ": pass
+            if current_char == "#": self.comment()
+            elif current_char == " ": pass
             elif current_char == "\t": pass
             elif current_char == "\r": pass
             elif current_char == "\n": self.line += 1
@@ -86,7 +87,7 @@ class Scanner:
 
 
     def is_at_end(self) -> bool:
-        return len(self.source)-1 == self.current
+        return len(self.source) == self.current
 
     def peek(self) -> str:
         return self.source[self.current]
@@ -126,10 +127,14 @@ class Scanner:
 
     def identifier(self, name: str):
         # read in name until whitespace
-        while not self.is_at_end() and not self.peek().isspace():
+        while not self.is_at_end() and not self.peek().isspace() and self.peek() != "(":
             name += self.advance()
         
         if name in self.keywords.keys():
             self.add_token((name, self.keywords[name]))
         else:
             self.add_token((name, TokenType.IDENTIFIER))
+
+    def comment(self):
+        while not self.is_at_end() and self.peek() != "\n":
+            self.advance()
