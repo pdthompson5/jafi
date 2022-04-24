@@ -5,8 +5,7 @@
 import logging
 import sys
 
-sys.path.append("../jafi")
-from jafi.scanner import Scanner
+from scanner import Scanner
 
 
 

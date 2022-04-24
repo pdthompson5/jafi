@@ -1,0 +1,112 @@
+"""
+FunctionDeclaration
+    name: Token 
+    parameters: List[Token]
+    body: Expr
+VariableDeclaration
+    name: Token
+    initializer: Expr
+FunctionCall
+    paren: Token 
+    callee : Expr
+    arguments : List[Expr]
+Variable
+    name: Token 
+Literal
+    literal: Token 
+Grouping
+    paren: Token
+    enclosed: Expr
+Flow
+    keyword: Token 
+    starting_values: List[Expr]
+    body: List[Expr]
+"""
+
+import os
+
+
+ 
+my_dict = {
+    "FunctionDeclaration" : {"name": "Token", "parameters" : "List[Token]", "body" : "Expr"},
+    "VariableDeclaration" : {"name": "Token", "initializer" : "Expr"},
+    "Variable" : {"name": "Token"},
+    "Literal" : {"name": "Token", "parameters" : "List[Token]", "body" : "Expr"},
+    "Grouping" : {"paren": "Token", "enclosed" : "Expr"},
+    "Flow" : {"keyword": "Token", "enclosed" : "Expr"},
+}
+
+os.remove("expr.py")
+
+expr_file = open("jafi/expr.py", "x")
+
+
+header = """
+from abc import ABC, abstractmethod
+from typing import List
+from jafi_token import Token 
+
+class Expr(ABC):
+    @abstractmethod
+    def accept(self, visitor: Visitor):
+        pass
+
+"""
+
+
+def create_init(name: str, params: dict) -> str:
+    init = "    def __init__(self, "
+    for param, type in params.items():
+        init += f"{param} : {type}, "
+    init += "):\n"
+
+    for param in params.keys():
+        init += f"        self.{param} = {param}\n"
+
+    return init
+
+def camel_to_snake(name: str):
+    snake = ""
+    indices = []
+    for i, c in enumerate(name):
+        if c.isupper():
+            indices.append(i)
+
+    prev_index = 0
+    if name[0].isupper():
+        snake += name[0].lower()
+        indices = indices[1:]
+        prev_index += 1
+
+    for index in indices:
+        snake += name[prev_index:index]
+        snake += f"_{name[index].lower()}"
+        prev_index = index+1
+    
+    snake += name[prev_index:]
+    return snake
+
+def create_accept(name:str) -> str:
+    accept = "    def accept(self, visitor : Visitor):\n"
+    accept += f"        visitor.visit_{camel_to_snake(name)}(self)\n"
+    return accept
+    
+def create_expr_class(name: str, params: dict):
+    expr = ""
+    expr += f"class {name}(Expr):\n"
+    expr += create_init(name, params)
+    expr += create_accept(name)
+
+    return expr
+    
+# def create_visitor(expr: str) -> str:
+#     visitor = 
+
+
+
+expr_file.write(header)
+for expr, params in my_dict.items():
+    expr_file.write(create_expr_class(expr, params))
+    expr_file.write("\n")
+    
+
