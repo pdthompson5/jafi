@@ -2,6 +2,7 @@
 from abc import ABC, abstractmethod
 from typing import List
 from jafi_token import Token 
+from visitor import Visitor
 
 class Expr(ABC):
     @abstractmethod
@@ -50,5 +51,4 @@ class Flow(Expr):
         self.enclosed = enclosed
     def accept(self, visitor : Visitor):
         visitor.visit_flow(self)
-
 

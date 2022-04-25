@@ -36,15 +36,15 @@ my_dict = {
     "Flow" : {"keyword": "Token", "enclosed" : "Expr"},
 }
 
-os.remove("expr.py")
-
+os.remove("jafi/expr.py")
 expr_file = open("jafi/expr.py", "x")
 
 
-header = """
+expr_header = """
 from abc import ABC, abstractmethod
 from typing import List
 from jafi_token import Token 
+from visitor import Visitor
 
 class Expr(ABC):
     @abstractmethod
@@ -99,14 +99,27 @@ def create_expr_class(name: str, params: dict):
 
     return expr
     
-# def create_visitor(expr: str) -> str:
-#     visitor = 
+def create_visitor(expr_dict: dict) -> str:
+    visitor = "def Visitor(ABC):\n"
+    for expr in my_dict.keys():
+        visitor += "    @abstractmethod\n"
+        visitor += f"    def visit_{camel_to_snake(expr)}(expr: {expr}):\n"
+        visitor += f"        pass\n\n"
+    return visitor 
 
 
-
-expr_file.write(header)
+expr_file.write(expr_header)
 for expr, params in my_dict.items():
     expr_file.write(create_expr_class(expr, params))
     expr_file.write("\n")
-    
+
+visitor_header = """
+from abc import ABC, abstractmethod
+from expr import *
+"""
+os.remove("jafi/visitor.py")
+visitor_file = open("jafi/visitor.py", "x")
+
+visitor_file.write(visitor_header)
+visitor_file.write(create_visitor(my_dict))
 
