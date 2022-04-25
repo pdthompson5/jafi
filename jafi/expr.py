@@ -31,10 +31,8 @@ class Variable(Expr):
         visitor.visit_variable(self)
 
 class Literal(Expr):
-    def __init__(self, name : Token, parameters : List[Token], body : Expr, ):
-        self.name = name
-        self.parameters = parameters
-        self.body = body
+    def __init__(self, literal : Token, ):
+        self.literal = literal
     def accept(self, visitor : Visitor):
         visitor.visit_literal(self)
 

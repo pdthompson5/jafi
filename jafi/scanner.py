@@ -103,7 +103,8 @@ class Scanner:
     def number(self, digit: str):
         while not self.is_at_end() and self.peek() != "." and self.is_digit(self.peek()):
             digit += self.advance()
-        if self.peek() == ".":
+
+        if not self.is_at_end() and self.peek() == ".":
             digit += self.advance()
             while not self.is_at_end() and self.is_digit(self.peek()):
                 digit += self.advance()       
@@ -127,13 +128,17 @@ class Scanner:
 
     def identifier(self, name: str):
         # read in name until whitespace
-        while not self.is_at_end() and not self.peek().isspace() and self.peek() != "(":
+        while not self.is_at_end() and not self.peek().isspace() and self.is_allowable_char_in_name():
             name += self.advance()
         
         if name in self.keywords.keys():
             self.add_token((name, self.keywords[name]))
         else:
             self.add_token((name, TokenType.IDENTIFIER))
+
+    def is_allowable_char_in_name(self) -> bool:
+        return not self.peek() in ["(", ")", ",", ":"]
+
 
     def comment(self):
         while not self.is_at_end() and self.peek() != "\n":

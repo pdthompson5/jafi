@@ -3,6 +3,10 @@
 jafi:
 	python jafi
 
+.PHONY: gen_ast
+gen_ast: 
+	python gen_ast/gen_ast.py
+
 .PHONY: jafi_debug
 jafi_debug:
 	python jafi debug

@@ -31,7 +31,7 @@ my_dict = {
     "FunctionDeclaration" : {"name": "Token", "parameters" : "List[Token]", "body" : "Expr"},
     "VariableDeclaration" : {"name": "Token", "initializer" : "Expr"},
     "Variable" : {"name": "Token"},
-    "Literal" : {"name": "Token", "parameters" : "List[Token]", "body" : "Expr"},
+    "Literal" : {"literal": "Token"},
     "Grouping" : {"paren": "Token", "enclosed" : "Expr"},
     "Flow" : {"keyword": "Token", "enclosed" : "Expr"},
 }
