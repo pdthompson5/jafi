@@ -49,8 +49,7 @@ class Parser:
 
             
             self.consume(TokenType.LEFT_BRACE, "Expect '{' after function declaration")
-            # body = self.expression()
-            body = Literal(Token("", TokenType.STRING, "", 25))
+            body = self.expression()
             self.consume(TokenType.RIGHT_BRACE, "Expect '}' after function definition")
 
             return FunctionDeclaration(name, parameters, body)
@@ -64,23 +63,17 @@ class Parser:
             self.logger.info("Matched flow expression")
             keyword = self.advance()
             self.consume(TokenType.LEFT_PAREN, "Expect '(' after flow declaration")
-            # starting_val = self.expression()
-            starting_val = Literal(Token("", TokenType.STRING, "", 25))
+            starting_val = self.expression()
+
             self.consume(TokenType.RIGHT_PAREN, "Expect ')' after flow starting value")
 
             self.consume(TokenType.LEFT_BRACE, "Expect '{' after flow starting value")
             body = []
             while not self.check(TokenType.RIGHT_BRACE):
-                body.append(Literal(Token("", TokenType.STRING, "", 25)))
-                self.advance()
-                # body.append(self.function_call())
+                body.append(self.expression())
 
             self.consume(TokenType.RIGHT_BRACE, "Expect '}' after flow body")
 
-
-            print(keyword)
-            print(starting_val)
-            print(body)
             return Flow(keyword, starting_val, body)
             
         else:
@@ -90,13 +83,10 @@ class Parser:
     def variable_declaration(self):
         if self.match(TokenType.SET):
             self.logger.info("Matched variable declaration")
+
             name = self.advance()
             self.consume(TokenType.EQUAL, "Expect '=' after variable name")
-            initializer = Literal(Token("", TokenType.STRING, "", 25))
-            # initializer = self.expression()
-
-            print(name) 
-            print(initializer)
+            initializer = self.expression()
 
             return VariableDeclaration(name, initializer)
         else:
@@ -114,7 +104,7 @@ class Parser:
                 arguments.append(self.expression())
                 if not self.match(TokenType.COMMA):
                     break
-            self.consume(TokenType.RIGHT_PAREN, "Unclosed Parenthesis")
+            self.consume(TokenType.RIGHT_PAREN, "Expect ')' after argument list")
             expr = FunctionCall(expr, arguments)
             
         return expr

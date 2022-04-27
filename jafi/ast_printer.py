@@ -9,13 +9,13 @@ class AST_Printer(Visitor):
     def visit_function_declaration(self, expr: FunctionDeclaration):
         param_string = "("
         for param in expr.parameters:
-            param_string += param + ","
+            param_string += param.__str__() + ","
         param_string += ")"
 
-        return self.parenthesize(f"def {expr.name.lexeme} {param_string}", expr.body)
+        return self.parenthesize(f"def {expr.name.lexeme} {param_string}", [expr.body])
     
     def visit_variable_declaration(self, expr: VariableDeclaration):
-        return self.parenthesize("set", expr.initializer)
+        return self.parenthesize(f"set {expr.name.lexeme}", [expr.initializer])
 
     
     def visit_variable(self, expr: Variable):
@@ -34,7 +34,7 @@ class AST_Printer(Visitor):
         return self.parenthesize("flow", [expr.starting_val] + expr.body)
     
     def visit_function_call(self, expr: FunctionCall):
-        return self.parenthesize("", [expr.l_value] + expr.arguments)
+        return self.parenthesize("func", [expr.l_value] + expr.arguments)
 
 
 

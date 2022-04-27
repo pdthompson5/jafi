@@ -7,8 +7,8 @@ Type: TokenType.SEMICOLON Lexeme: ';' Literal: None Line: 4
 Type: TokenType.COLON Lexeme: ':' Literal: None Line: 5
 Type: TokenType.NUMBER Lexeme: '14.' Literal: 14.0 Line: 6
 Type: TokenType.STRING Lexeme: 'This' Literal: This Line: 7
-Type: TokenType.FALSE Lexeme: 'False' Literal: None Line: 9
-Type: TokenType.TRUE Lexeme: 'True' Literal: None Line: 10
+Type: TokenType.FALSE Lexeme: 'False' Literal: False Line: 9
+Type: TokenType.TRUE Lexeme: 'True' Literal: True Line: 10
 Type: TokenType.NONE Lexeme: 'None' Literal: None Line: 11
 Type: TokenType.IF Lexeme: 'if' Literal: None Line: 12
 Type: TokenType.THEN Lexeme: 'then' Literal: None Line: 13
