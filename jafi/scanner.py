@@ -133,7 +133,12 @@ class Scanner:
             name += self.advance()
         
         if name in self.keywords.keys():
-            self.add_token((name, self.keywords[name]))
+            if name == "False":
+                self.add_token((name, self.keywords[name], False))
+            elif name == "True":
+                self.add_token((name, self.keywords[name], True))
+            else:
+                self.add_token((name, self.keywords[name]))
         else:
             self.add_token((name, TokenType.IDENTIFIER))
 

@@ -45,11 +45,10 @@ expr_header = """
 from abc import ABC, abstractmethod
 from typing import List
 from jafi_token import Token 
-from visitor import Visitor
 
 class Expr(ABC):
     @abstractmethod
-    def accept(self, visitor: Visitor):
+    def accept(self, visitor):
         pass
 
 """
@@ -89,7 +88,7 @@ def camel_to_snake(name: str):
 
 def create_accept(name:str) -> str:
     accept = "    def accept(self, visitor):\n"
-    accept += f"        visitor.visit_{camel_to_snake(name)}(self)\n"
+    accept += f"        return visitor.visit_{camel_to_snake(name)}(self)\n"
     return accept
     
 def create_expr_class(name: str, params: dict):

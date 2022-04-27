@@ -7,10 +7,15 @@ from jafi_token import TokenType
 from typing import List
 from expr import *
 from error_reporting import report_error_token
+import logging
 
 
 class Parser:
-    def __init__(self, tokens: List[Token]):
+    def __init__(self, tokens: List[Token], log_level):
+        logging.basicConfig()
+        logging.getLogger("Parser").setLevel(log_level)  
+        self.logger = logging.getLogger("Parser")  
+
         self.tokens = tokens
         self.current = 0
 
@@ -24,11 +29,11 @@ class Parser:
         return expressions
 
     def expression(self) -> Expr:
-
-        self.function_declaration()
+        return self.function_declaration()
 
     def function_declaration(self):
         if self.match(TokenType.DEF):
+            self.logger.info("Matched function declaration")
             name = self.advance()
             
             self.consume(TokenType.LEFT_PAREN, "Expect '(' after function name")
@@ -56,6 +61,7 @@ class Parser:
     
     def flow(self):
         if self.check(TokenType.FLOW):
+            self.logger.info("Matched flow expression")
             keyword = self.advance()
             self.consume(TokenType.LEFT_PAREN, "Expect '(' after flow declaration")
             # starting_val = self.expression()
@@ -78,12 +84,12 @@ class Parser:
             return Flow(keyword, starting_val, body)
             
         else:
-            self.variable_declaration()
+            return self.variable_declaration()
 
 
     def variable_declaration(self):
         if self.match(TokenType.SET):
-
+            self.logger.info("Matched variable declaration")
             name = self.advance()
             self.consume(TokenType.EQUAL, "Expect '=' after variable name")
             initializer = Literal(Token("", TokenType.STRING, "", 25))
@@ -102,11 +108,13 @@ class Parser:
         expr = self.variable()
 
         if self.match(TokenType.LEFT_PAREN):
+            self.logger.info("Matched function call")
             arguments = []
             while not self.check(TokenType.RIGHT_PAREN):
                 arguments.append(self.expression())
                 if not self.match(TokenType.COMMA):
                     break
+            self.consume(TokenType.RIGHT_PAREN, "Unclosed Parenthesis")
             expr = FunctionCall(expr, arguments)
             
         return expr
@@ -114,6 +122,7 @@ class Parser:
 
     def variable(self):
         if self.check(TokenType.IDENTIFIER):
+            self.logger.info("Matched variable")
             name = self.advance()
             return Variable(name)
         else:
@@ -121,12 +130,14 @@ class Parser:
 
     def primary(self):
         if self.check_list([TokenType.TRUE, TokenType.FALSE, TokenType.STRING, TokenType.NUMBER, TokenType.NONE]):
+            self.logger.info("Matched literal")
             return Literal(self.advance().literal)
         else:
             return self.grouping()
     
     def grouping(self):
         if self.check(TokenType.LEFT_PAREN):
+            self.logger.info("Matched group")
             paren = self.advance()
             enclosed = self.expression()
             self.consume(TokenType.RIGHT_PAREN, "Unclosed Parenthesis")

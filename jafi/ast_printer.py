@@ -4,7 +4,7 @@ from visitor import Visitor
 
 class AST_Printer(Visitor):
     def print(self, expr: Expr) -> str:
-        return expr.accept()
+        return expr.accept(self)
     
     def visit_function_declaration(self, expr: FunctionDeclaration):
         param_string = "("
@@ -34,7 +34,7 @@ class AST_Printer(Visitor):
         return self.parenthesize("flow", [expr.starting_val] + expr.body)
     
     def visit_function_call(self, expr: FunctionCall):
-        return self.parenthesize("", [expr.name] + expr.arguments)
+        return self.parenthesize("", [expr.l_value] + expr.arguments)
 
 
 
@@ -47,4 +47,12 @@ class AST_Printer(Visitor):
 
         return string
 
-    
+
+
+def test_printer():
+    printer = AST_Printer()
+    exprs = []
+    exprs.append(Literal(15))
+    for expr in exprs:
+        print(printer.print(expr))
+    pass
