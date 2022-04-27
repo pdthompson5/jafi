@@ -31,7 +31,7 @@ my_dict = {
     "FunctionDeclaration" : {"name": "Token", "parameters" : "List[Token]", "body" : "Expr"},
     "VariableDeclaration" : {"name": "Token", "initializer" : "Expr"},
     "Variable" : {"name": "Token"},
-    "Literal" : {"literal": "Token"},
+    "Literal" : {"literal": "object"},
     "Grouping" : {"paren": "Token", "enclosed" : "Expr"},
     "Flow" : {"keyword": "Token", "starting_val" : "Expr", "body" : "List[Expr]"},
     "FunctionCall" : {"l_value" : "Expr", "arguments" : "List[Expr]"}
@@ -88,7 +88,7 @@ def camel_to_snake(name: str):
     return snake
 
 def create_accept(name:str) -> str:
-    accept = "    def accept(self, visitor : Visitor):\n"
+    accept = "    def accept(self, visitor):\n"
     accept += f"        visitor.visit_{camel_to_snake(name)}(self)\n"
     return accept
     
@@ -101,10 +101,10 @@ def create_expr_class(name: str, params: dict):
     return expr
     
 def create_visitor(expr_dict: dict) -> str:
-    visitor = "def Visitor(ABC):\n"
+    visitor = "class Visitor(ABC):\n"
     for expr in my_dict.keys():
         visitor += "    @abstractmethod\n"
-        visitor += f"    def visit_{camel_to_snake(expr)}(expr: {expr}):\n"
+        visitor += f"    def visit_{camel_to_snake(expr)}(self, expr: {expr}):\n"
         visitor += f"        pass\n\n"
     return visitor 
 

@@ -1,32 +1,32 @@
 
 from abc import ABC, abstractmethod
 from expr import *
-def Visitor(ABC):
+class Visitor(ABC):
     @abstractmethod
-    def visit_function_declaration(expr: FunctionDeclaration):
+    def visit_function_declaration(self, expr: FunctionDeclaration):
         pass
 
     @abstractmethod
-    def visit_variable_declaration(expr: VariableDeclaration):
+    def visit_variable_declaration(self, expr: VariableDeclaration):
         pass
 
     @abstractmethod
-    def visit_variable(expr: Variable):
+    def visit_variable(self, expr: Variable):
         pass
 
     @abstractmethod
-    def visit_literal(expr: Literal):
+    def visit_literal(self, expr: Literal):
         pass
 
     @abstractmethod
-    def visit_grouping(expr: Grouping):
+    def visit_grouping(self, expr: Grouping):
         pass
 
     @abstractmethod
-    def visit_flow(expr: Flow):
+    def visit_flow(self, expr: Flow):
         pass
 
     @abstractmethod
-    def visit_function_call(expr: FunctionCall):
+    def visit_function_call(self, expr: FunctionCall):
         pass
 

@@ -7,6 +7,7 @@ import sys
 
 from scanner import Scanner
 from jafi_parser import Parser
+from ast_printer import AST_Printer
 
 
 
@@ -33,7 +34,11 @@ class Jafi:
         tokens = scanner.scan()
 
         parser = Parser(tokens)
-        parser.parse()
+        expressions = parser.parse()
+        
+        printer = AST_Printer()
+        for expr in expressions:
+            printer.print(expr)
 
 
         

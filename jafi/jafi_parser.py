@@ -101,7 +101,6 @@ class Parser:
     def function_call(self):
         expr = self.variable()
 
-
         if self.match(TokenType.LEFT_PAREN):
             arguments = []
             while not self.check(TokenType.RIGHT_PAREN):
@@ -114,10 +113,29 @@ class Parser:
 
 
     def variable(self):
-        name = self.advance()
+        if self.check(TokenType.IDENTIFIER):
+            name = self.advance()
+            return Variable(name)
+        else:
+            return self.primary()
 
+    def primary(self):
+        if self.check_list([TokenType.TRUE, TokenType.FALSE, TokenType.STRING, TokenType.NUMBER, TokenType.NONE]):
+            return Literal(self.advance().literal)
+        else:
+            return self.grouping()
+    
+    def grouping(self):
+        if self.check(TokenType.LEFT_PAREN):
+            paren = self.advance()
+            enclosed = self.expression()
+            self.consume(TokenType.RIGHT_PAREN, "Unclosed Parenthesis")
 
-        pass
+            return Grouping(paren, enclosed)
+        else:
+            report_error_token(self.peek(), "Expect expression")
+            return None 
+
 
 
 
@@ -141,6 +159,9 @@ class Parser:
     
     def check(self, type: TokenType) -> bool:
         return type == self.peek().type
+
+    def check_list(self, types: List[TokenType]) -> bool:
+        return self.peek().type in types 
     
     def consume(self, type: TokenType, message : str):
         if type == self.peek().type:
