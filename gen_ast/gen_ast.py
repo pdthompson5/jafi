@@ -33,7 +33,8 @@ my_dict = {
     "Variable" : {"name": "Token"},
     "Literal" : {"literal": "Token"},
     "Grouping" : {"paren": "Token", "enclosed" : "Expr"},
-    "Flow" : {"keyword": "Token", "enclosed" : "Expr"},
+    "Flow" : {"keyword": "Token", "starting_val" : "Expr", "body" : "List[Expr]"},
+    "FunctionCall" : {"l_value" : "Expr", "arguments" : "List[Expr]"}
 }
 
 os.remove("jafi/expr.py")

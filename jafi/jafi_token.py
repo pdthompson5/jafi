@@ -8,6 +8,7 @@ class TokenType(Enum):
     COMMA = auto()
     SEMICOLON = auto()
     COLON = auto()
+    EQUAL = auto()
 
     IDENTIFIER = auto()
     STRING = auto()

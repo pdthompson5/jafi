@@ -44,9 +44,17 @@ class Grouping(Expr):
         visitor.visit_grouping(self)
 
 class Flow(Expr):
-    def __init__(self, keyword : Token, enclosed : Expr, ):
+    def __init__(self, keyword : Token, starting_val : Expr, body : List[Expr], ):
         self.keyword = keyword
-        self.enclosed = enclosed
+        self.starting_val = starting_val
+        self.body = body
     def accept(self, visitor : Visitor):
         visitor.visit_flow(self)
+
+class FunctionCall(Expr):
+    def __init__(self, l_value : Expr, arguments : List[Expr], ):
+        self.l_value = l_value
+        self.arguments = arguments
+    def accept(self, visitor : Visitor):
+        visitor.visit_function_call(self)
 

@@ -51,6 +51,7 @@ class Scanner:
             "," : TokenType.COMMA,
             ";" : TokenType.SEMICOLON,
             ":" : TokenType.COLON,
+            "=" : TokenType.EQUAL
         }
 
 

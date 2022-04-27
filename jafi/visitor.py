@@ -26,3 +26,7 @@ def Visitor(ABC):
     def visit_flow(expr: Flow):
         pass
 
+    @abstractmethod
+    def visit_function_call(expr: FunctionCall):
+        pass
+

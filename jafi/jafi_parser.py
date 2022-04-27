@@ -42,8 +42,6 @@ class Parser:
 
             self.consume(TokenType.RIGHT_PAREN, "Expect ')' after parameter list")
 
-            for para  in parameters:
-                print(para)
             
             self.consume(TokenType.LEFT_BRACE, "Expect '{' after function declaration")
             # body = self.expression()
@@ -57,6 +55,68 @@ class Parser:
             return self.flow()
     
     def flow(self):
+        if self.check(TokenType.FLOW):
+            keyword = self.advance()
+            self.consume(TokenType.LEFT_PAREN, "Expect '(' after flow declaration")
+            # starting_val = self.expression()
+            starting_val = Literal(Token("", TokenType.STRING, "", 25))
+            self.consume(TokenType.RIGHT_PAREN, "Expect ')' after flow starting value")
+
+            self.consume(TokenType.LEFT_BRACE, "Expect '{' after flow starting value")
+            body = []
+            while not self.check(TokenType.RIGHT_BRACE):
+                body.append(Literal(Token("", TokenType.STRING, "", 25)))
+                self.advance()
+                # body.append(self.function_call())
+
+            self.consume(TokenType.RIGHT_BRACE, "Expect '}' after flow body")
+
+
+            print(keyword)
+            print(starting_val)
+            print(body)
+            return Flow(keyword, starting_val, body)
+            
+        else:
+            self.variable_declaration()
+
+
+    def variable_declaration(self):
+        if self.match(TokenType.SET):
+
+            name = self.advance()
+            self.consume(TokenType.EQUAL, "Expect '=' after variable name")
+            initializer = Literal(Token("", TokenType.STRING, "", 25))
+            # initializer = self.expression()
+
+            print(name) 
+            print(initializer)
+
+            return VariableDeclaration(name, initializer)
+        else:
+            return self.function_call()
+
+# TODO: Check if you can use parenthesis inside of parameter lists -> You should be able to 
+
+    def function_call(self):
+        expr = self.variable()
+
+
+        if self.match(TokenType.LEFT_PAREN):
+            arguments = []
+            while not self.check(TokenType.RIGHT_PAREN):
+                arguments.append(self.expression())
+                if not self.match(TokenType.COMMA):
+                    break
+            expr = FunctionCall(expr, arguments)
+            
+        return expr
+
+
+    def variable(self):
+        name = self.advance()
+
+
         pass
 
 
