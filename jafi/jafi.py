@@ -37,4 +37,7 @@ class Jafi:
         #     print(printer.print(expr))
 
         for expr in expressions:
-            print(self.interpreter.evaluate(expr))
+            try:
+                print(self.interpreter.evaluate(expr))
+            except:
+                sys.exit(70)

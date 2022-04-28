@@ -3,6 +3,7 @@ from jafi_callable import JafiCallable
 from environment import Environment
 from expr import FunctionDeclaration
 from jafi_token import Token
+from runtime_error import RuntimeError
 
 
 
@@ -40,8 +41,8 @@ class JafiFunction(JafiCallable):
 
         env = self.local.copy()
         for argument in arguments:
-            if arity == 0:
-                raise Exception #Too many arguments 
+            if arity == 0: #Too many arguments 
+                raise RuntimeError(paren.line, f"Function '{self.decl.name.lexeme}' got {len(arguments)} arguments. Expected: {self.arity}.") 
             env.put(params.pop(0), argument)
             arity -= 1
 

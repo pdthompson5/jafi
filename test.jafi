@@ -1,2 +1,5 @@
 
-set listA = head(1, 2, 3)
+def foo(a){
+    a
+}
+foo(10, 20)

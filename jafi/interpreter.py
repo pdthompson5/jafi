@@ -1,6 +1,3 @@
-# I would like to implement currying so functions can be partially evaluated 
-
-
 from expr import *
 from jafi_callable import JafiCallable
 from jafi_function import JafiFunction
@@ -34,6 +31,7 @@ class Interpreter(Visitor):
             return expr.accept(self)
         except RuntimeError as e:
             report_error(e.message, e.line)
+            raise e
 
 
     def evaluate_function(self, body : Expr, local : Environment):
