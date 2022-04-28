@@ -6,7 +6,7 @@ class JafiCallable(ABC):
         self.arity = arity
 
     @abstractmethod
-    def call(self, arguments : List[object]) -> object:
+    def call(self, arguments : List[object], interpreter) -> object:
         pass
 
     def arity(self) -> int:

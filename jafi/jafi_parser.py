@@ -97,7 +97,8 @@ class Parser:
     def function_call(self):
         expr = self.variable()
 
-        if self.match(TokenType.LEFT_PAREN):
+        if self.check(TokenType.LEFT_PAREN):
+            paren = self.advance()
             self.logger.info("Matched function call")
             arguments = []
             while not self.check(TokenType.RIGHT_PAREN):
@@ -105,7 +106,7 @@ class Parser:
                 if not self.match(TokenType.COMMA):
                     break
             self.consume(TokenType.RIGHT_PAREN, "Expect ')' after argument list")
-            expr = FunctionCall(expr, arguments)
+            expr = FunctionCall(paren, expr, arguments)
             
         return expr
 

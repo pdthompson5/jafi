@@ -1,10 +1,12 @@
 # I would like to implement currying so functions can be partially evaluated 
 
 
-from tkinter import E
 from expr import *
+from jafi.jafi_callable import JafiCallable
+from jafi_function import JafiFunction
 from visitor import Visitor
 from environment import Environment
+from runtime_error import RuntimeError
 
 class Interpreter(Visitor):
     def __init__(self) -> None:
@@ -29,7 +31,9 @@ class Interpreter(Visitor):
 
 
     def visit_function_declaration(self, expr: FunctionDeclaration):
-        pass
+        function = JafiFunction(expr, self.env)
+        self.env.put(expr.name, function)
+        return function
     
     def visit_variable_declaration(self, expr: VariableDeclaration):
         initializer = self.evaluate(expr.initializer)
@@ -45,7 +49,12 @@ class Interpreter(Visitor):
         pass
     
     def visit_function_call(self, expr: FunctionCall):
-        pass
+        left_side = self.evaluate(expr.l_value)
+
+        if not isinstance(left_side, JafiCallable):
+            raise RuntimeError(expr.paren.line, f"{left_side} is not callable")
+
+        return left_side.call(expr.arguments, self)
 
 
     def visit_literal(self, expr: Literal):

@@ -51,7 +51,8 @@ class Flow(Expr):
         return visitor.visit_flow(self)
 
 class FunctionCall(Expr):
-    def __init__(self, l_value : Expr, arguments : List[Expr], ):
+    def __init__(self, paren : Token, l_value : Expr, arguments : List[Expr], ):
+        self.paren = paren
         self.l_value = l_value
         self.arguments = arguments
     def accept(self, visitor):
