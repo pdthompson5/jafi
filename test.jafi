@@ -1,3 +1,2 @@
-def add5 (a){
-    +(a, 5)
-}
+set variable = 30
+variable
