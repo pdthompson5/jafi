@@ -27,3 +27,4 @@ test:
 .PHONY: clean
 clean:
 	-rm jafi/*.pyc
+	-rm -r .pytest_cache
