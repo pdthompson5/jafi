@@ -39,6 +39,6 @@ class Jafi:
 
         for expr in expressions:
             try:
-                print(self.interpreter.evaluate(expr))
+                print(Interpreter.stringify(self.interpreter.evaluate(expr)))
             except RuntimeError:
                 sys.exit(70)

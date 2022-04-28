@@ -110,3 +110,14 @@ class Interpreter(Visitor):
     
     def visit_grouping(self, expr: Grouping):
         return self.evaluate(expr.enclosed)
+
+
+    def is_char_list(value):
+        return len(value) > 0 and isinstance(value[0], str) and len(list(filter(lambda x: len(x) > 1, value))) == 0
+
+    def stringify(value: object):
+        if isinstance(value, list):
+            if Interpreter.is_char_list(value):
+                return "".join([x for x in value])
+        else:
+            return f"{value}"

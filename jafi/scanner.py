@@ -125,7 +125,7 @@ class Scanner:
             return
         self.advance() #consume closing '"'"
 
-        self.add_token((string, TokenType.STRING, string))
+        self.add_token((string, TokenType.STRING, list(string)))
 
     def identifier(self, name: str):
         # read in name until whitespace
