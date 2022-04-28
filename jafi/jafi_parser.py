@@ -9,7 +9,7 @@ from expr import *
 from error_reporting import report_error_token
 import logging
 
-
+# TODO: See if I can add infix operators into my grammar then just desugar them to functions 
 class Parser:
     def __init__(self, tokens: List[Token], log_level):
         logging.basicConfig()

@@ -1,5 +1,7 @@
 def count(a){
-    count(a)
+    a
 }
 
 count(15)
+count(20)
+count(50)

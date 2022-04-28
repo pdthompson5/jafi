@@ -1,0 +1,7 @@
+set varB = 20
+
+def foo(){
+    varB
+}
+foo()
+

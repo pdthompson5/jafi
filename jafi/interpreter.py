@@ -7,6 +7,7 @@ from jafi_function import JafiFunction
 from visitor import Visitor
 from environment import Environment
 from runtime_error import RuntimeError
+from error_reporting import report_error
 
 class Interpreter(Visitor):
     def __init__(self) -> None:
@@ -14,7 +15,10 @@ class Interpreter(Visitor):
 
 
     def evaluate(self, expr: Expr):
-        return expr.accept(self)
+        try: 
+            return expr.accept(self)
+        except RuntimeError as e:
+            report_error(e.message, e.line)
 
 
     def evaluate_function(self, body : Expr, local : Environment):
@@ -52,9 +56,13 @@ class Interpreter(Visitor):
         left_side = self.evaluate(expr.l_value)
 
         if not isinstance(left_side, JafiCallable):
-            raise RuntimeError(expr.paren.line, f"{left_side} is not callable")
+            raise RuntimeError(expr.paren.line, f"{left_side} is not callable.")
 
-        return left_side.call(expr.arguments, self)
+        argument_values = []
+        for argument in expr.arguments:
+            argument_values.append(self.evaluate(argument))
+
+        return left_side.call(argument_values, self)
 
 
     def visit_literal(self, expr: Literal):
