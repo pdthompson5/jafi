@@ -34,7 +34,8 @@ my_dict = {
     "Literal" : {"literal": "object"},
     "Grouping" : {"paren": "Token", "enclosed" : "Expr"},
     "Flow" : {"keyword": "Token", "starting_val" : "Expr", "body" : "List[Expr]"},
-    "FunctionCall" : {"paren" : "Token", "l_value" : "Expr", "arguments" : "List[Expr]"}
+    "FunctionCall" : {"paren" : "Token", "l_value" : "Expr", "arguments" : "List[Expr]"},
+    "IfExpr" : {"keyword" : "Token", "condition" : "Expr", "if_true" : "Expr", "else_clause" : "Expr"}
 }
 
 os.remove("jafi/expr.py")

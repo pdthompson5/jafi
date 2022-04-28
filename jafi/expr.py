@@ -58,3 +58,12 @@ class FunctionCall(Expr):
     def accept(self, visitor):
         return visitor.visit_function_call(self)
 
+class IfExpr(Expr):
+    def __init__(self, keyword : Token, condition : Expr, if_true : Expr, else_clause : Expr, ):
+        self.keyword = keyword
+        self.condition = condition
+        self.if_true = if_true
+        self.else_clause = else_clause
+    def accept(self, visitor):
+        return visitor.visit_if_expr(self)
+

@@ -81,6 +81,10 @@ class Interpreter(Visitor):
             argument_values.append(self.evaluate(argument))
 
         return left_side.call(argument_values, self, expr.paren)
+    
+    def visit_if_expr(self, expr: IfExpr):
+        print("Unimplemented")
+        return super().visit_if_expr(expr)
 
 
     def visit_literal(self, expr: Literal):

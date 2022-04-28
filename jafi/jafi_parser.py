@@ -2,6 +2,7 @@
 
 
 
+from ast import IfExp
 from jafi_token import Token
 from jafi_token import TokenType 
 from typing import List
@@ -89,6 +90,24 @@ class Parser:
             initializer = self.expression()
 
             return VariableDeclaration(name, initializer)
+        else:
+            return self.if_expr()
+
+    def if_expr(self):
+        if self.check(TokenType.IF):
+            keyword = self.advance()
+            self.logger.info("Matched if expression")
+
+            condition = self.expression()
+            self.consume(TokenType.THEN, "Expect 'then' after if conditional.")
+
+            if_true = self.expression()
+
+            else_clause = Literal(None)
+            if self.match(TokenType.ELSE):
+                else_clause = self.expression()
+            
+            return IfExpr(keyword, condition, if_true, else_clause)
         else:
             return self.function_call()
 

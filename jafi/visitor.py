@@ -30,3 +30,7 @@ class Visitor(ABC):
     def visit_function_call(self, expr: FunctionCall):
         pass
 
+    @abstractmethod
+    def visit_if_expr(self, expr: IfExpr):
+        pass
+

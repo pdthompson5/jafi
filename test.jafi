@@ -1,4 +1,1 @@
-
-set my_tup = tuple("this", 2)
-set my_dict = dict(my_tup)
-look_up(my_dict, "this")
+if True then 15 else 20

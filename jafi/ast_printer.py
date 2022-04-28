@@ -36,6 +36,8 @@ class AST_Printer(Visitor):
     def visit_function_call(self, expr: FunctionCall):
         return self.parenthesize("func", [expr.l_value] + expr.arguments)
 
+    def visit_if_expr(self, expr: IfExpr):
+        return self.parenthesize("if", [expr.condition, expr.if_true, expr.else_clause])
 
 
     def parenthesize(self, name: str, exprs: List[Expr]) -> str:

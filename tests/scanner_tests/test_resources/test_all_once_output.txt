@@ -18,7 +18,6 @@ Type: TokenType.SET Lexeme: 'set' Literal: None Line: 16
 Type: TokenType.BOOL_TYPE Lexeme: 'bool' Literal: None Line: 18
 Type: TokenType.NUMBER_TYPE Lexeme: 'num' Literal: None Line: 19
 Type: TokenType.STRING_TYPE Lexeme: 'str' Literal: None Line: 20
-Type: TokenType.TUPLE_TYPE Lexeme: 'tuple' Literal: None Line: 21
-Type: TokenType.IDENTIFIER Lexeme: 'varA' Literal: None Line: 23
-Type: TokenType.IDENTIFIER Lexeme: 'listB' Literal: None Line: 24
-Type: TokenType.EOF Lexeme: '' Literal: None Line: 25
+Type: TokenType.IDENTIFIER Lexeme: 'varA' Literal: None Line: 22
+Type: TokenType.IDENTIFIER Lexeme: 'listB' Literal: None Line: 23
+Type: TokenType.EOF Lexeme: '' Literal: None Line: 24
