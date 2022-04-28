@@ -48,5 +48,6 @@ class JafiFunction(JafiCallable):
             new_decl = FunctionDeclaration(self.decl.name, params, self.decl.body)
             return JafiFunction(new_decl, self.local)
             
-        pass 
+    def __str__(self):
+        return f"<function {self.decl.name.lexeme}>"
 

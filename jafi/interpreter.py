@@ -2,7 +2,7 @@
 
 
 from expr import *
-from jafi.jafi_callable import JafiCallable
+from jafi_callable import JafiCallable
 from jafi_function import JafiFunction
 from visitor import Visitor
 from environment import Environment

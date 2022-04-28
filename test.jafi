@@ -1,2 +1,4 @@
-set variable = 30
-variable
+def foo(){
+    15
+}
+foo()

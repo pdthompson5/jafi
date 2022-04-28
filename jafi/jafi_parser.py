@@ -39,11 +39,11 @@ class Parser:
             self.consume(TokenType.LEFT_PAREN, "Expect '(' after function name")
             parameters = []
             
-            while self.peek() != TokenType.RIGHT_PAREN:
-                
+            while not self.check(TokenType.RIGHT_PAREN):
                 parameters.append(self.advance())
                 if not self.match(TokenType.COMMA):
                     break
+            
 
             self.consume(TokenType.RIGHT_PAREN, "Expect ')' after parameter list")
 
