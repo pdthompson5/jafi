@@ -2,6 +2,7 @@ from typing import List
 from jafi_callable import JafiCallable
 from environment import Environment
 from expr import FunctionDeclaration
+from jafi_token import Token
 
 
 
@@ -33,7 +34,7 @@ class JafiFunction(JafiCallable):
         super().__init__(decl.parameters.__len__())
 
 
-    def call(self, arguments: List[object], interpreter) -> object:
+    def call(self, arguments: List[object], interpreter, paren: Token) -> object:
         arity = self.arity
         params = self.decl.parameters.copy()
 

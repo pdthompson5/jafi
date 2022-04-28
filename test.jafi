@@ -1,5 +1,2 @@
 
-def count(a){
-    %(a, 2)
-}
-count(15)
+set listA = head(1, 2, 3)

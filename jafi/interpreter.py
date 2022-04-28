@@ -13,16 +13,20 @@ from native_function import NativeFunction
 class Interpreter(Visitor):
     def __init__(self) -> None:
         standard_env = {
-        "+" : NativeFunction(2, lambda a, b: a[0] + a[1]),
-        "-" : NativeFunction(2, lambda a, b: a[0] - a[1]),
-        "*" : NativeFunction(2, lambda a, b: a[0] * a[1]),
-        "/" : NativeFunction(2, lambda a, b: a[0] / a[1]),
-        "%" : NativeFunction(2, lambda a, b: a[0] % a[1]),
+        "+" : NativeFunction("+", 2, lambda a, b: a[0] + a[1]),
+        "-" : NativeFunction("-", 2, lambda a, b: a[0] - a[1]),
+        "*" : NativeFunction("*", 2, lambda a, b: a[0] * a[1]),
+        "/" : NativeFunction("/", 2, lambda a, b: a[0] / a[1]),
+        "%" : NativeFunction("%", 2, lambda a, b: a[0] % a[1]),
+        "list" : NativeFunction("list", -1, lambda a, b: a),
+        "head" : NativeFunction("head", 1, lambda a, b: a[0][0]),
+        "tail" : NativeFunction("tail", 1, lambda a, b: a[0][len(a[0])-1]),
+        "index" : NativeFunction("index", 2, lambda a, b: a[0][int(a[1])]),
         }
         self.env = Environment(standard_env)
 
 
-
+# In order to implement control flow as native functions I would need lazy evaluation 
 
 
     def evaluate(self, expr: Expr):
@@ -74,7 +78,7 @@ class Interpreter(Visitor):
         for argument in expr.arguments:
             argument_values.append(self.evaluate(argument))
 
-        return left_side.call(argument_values, self)
+        return left_side.call(argument_values, self, expr.paren)
 
 
     def visit_literal(self, expr: Literal):
