@@ -1,1 +1,5 @@
-"This"
+set my_list = list(1, 2, 3)
+
+
+
+map(+(5), my_list)

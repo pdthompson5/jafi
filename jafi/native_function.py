@@ -14,11 +14,12 @@ class NativeFunction(JafiCallable):
     
     def call(self, arguments : List[object], interpreter, paren : Token):
         # currying should be possible for this as well 
+        # print(arguments)
         if len(arguments) < self.arity:
-            return NativeFunction(self.arity - len(arguments), self.function, arguments)
+            return NativeFunction(self.name, self.arity - len(arguments), self.function, arguments)
         else:   
             true_arguments = self.defined_arguments + arguments
-            if self.arity == -1 or len(true_arguments) == self.arity:
+            if self.arity == -1 or len(arguments) == self.arity:
                 return self.function(self.defined_arguments + arguments , interpreter)
             else:
                 raise RuntimeError(paren.line, f"Function '{self.name}' got {len(true_arguments)} arguments. Expected: {self.arity}.")

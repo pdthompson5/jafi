@@ -7,6 +7,8 @@ from runtime_error import RuntimeError
 from error_reporting import report_error
 from native_function import NativeFunction
 
+import standard_lib
+
 class Interpreter(Visitor):
     def __init__(self) -> None:
         standard_env = {
@@ -33,9 +35,14 @@ class Interpreter(Visitor):
         "head" : NativeFunction("head", 1, lambda a, b: a[0][0]),
         "tail" : NativeFunction("tail", 1, lambda a, b: a[0][len(a[0])-1]),
         "index" : NativeFunction("index", 2, lambda a, b: a[0][int(a[1])]),
-        "look_up" : NativeFunction("look_up", 2, lambda a, b: a[0][a[1]])
+        "look_up" : NativeFunction("look_up", 2, lambda a, b: a[0][a[1]]),
 
         # Add -> Replace, delete, maybe more
+
+
+        # Functional paradigm functions
+        "map" : NativeFunction("map", 2, standard_lib.map)
+
         }
         self.env = Environment(standard_env)
 
@@ -113,11 +120,10 @@ class Interpreter(Visitor):
 
 
     def is_char_list(value):
-        return len(value) > 0 and isinstance(value[0], str) and len(list(filter(lambda x: len(x) > 1, value))) == 0
+        return len(value) > 0 and isinstance(value[0], str) and len([x for x in value if len(x) > 1]) == 0
 
     def stringify(value: object):
         if isinstance(value, list):
             if Interpreter.is_char_list(value):
                 return "".join([x for x in value])
-        else:
-            return f"{value}"
+        return f"{value}"
