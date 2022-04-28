@@ -8,10 +8,21 @@ from visitor import Visitor
 from environment import Environment
 from runtime_error import RuntimeError
 from error_reporting import report_error
+from native_function import NativeFunction
 
 class Interpreter(Visitor):
     def __init__(self) -> None:
-        self.env = Environment()
+        standard_env = {
+        "+" : NativeFunction(2, lambda a, b: a[0] + a[1]),
+        "-" : NativeFunction(2, lambda a, b: a[0] - a[1]),
+        "*" : NativeFunction(2, lambda a, b: a[0] * a[1]),
+        "/" : NativeFunction(2, lambda a, b: a[0] / a[1]),
+        "%" : NativeFunction(2, lambda a, b: a[0] % a[1]),
+        }
+        self.env = Environment(standard_env)
+
+
+
 
 
     def evaluate(self, expr: Expr):
@@ -55,6 +66,7 @@ class Interpreter(Visitor):
     def visit_function_call(self, expr: FunctionCall):
         left_side = self.evaluate(expr.l_value)
 
+        
         if not isinstance(left_side, JafiCallable):
             raise RuntimeError(expr.paren.line, f"{left_side} is not callable.")
 

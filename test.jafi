@@ -1,5 +1,5 @@
-def count(a){
-    a
-}
 
+def count(a){
+    %(a, 2)
+}
 count(15)
