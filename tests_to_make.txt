@@ -2,4 +2,8 @@ Dangling else
 if-expressions
 Some native function test 
     The list management ones maybe
-map function tests with both native and jafi functions
+
+tests for:
+    filter
+    map
+    reduce 
