@@ -1,5 +1,4 @@
 
-def foo(a){
-    a
-}
-foo(10, 20)
+set my_tup = tuple("this", 2)
+set my_dict = dict(my_tup)
+look_up(my_dict, "this")

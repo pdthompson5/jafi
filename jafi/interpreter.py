@@ -19,11 +19,15 @@ class Interpreter(Visitor):
         "head" : NativeFunction("head", 1, lambda a, b: a[0][0]),
         "tail" : NativeFunction("tail", 1, lambda a, b: a[0][len(a[0])-1]),
         "index" : NativeFunction("index", 2, lambda a, b: a[0][int(a[1])]),
+        "tuple" : NativeFunction("tuple", -1, lambda a, b: tuple(a)),
+        "dict"  : NativeFunction("dict", -1, lambda a, b: dict(a)),
+        "look_up" : NativeFunction("look_up", 2, lambda a, b: a[0][a[1]])
         }
         self.env = Environment(standard_env)
 
 
 # In order to implement control flow as native functions I would need lazy evaluation 
+# Flow control is next up, I need that before I can make anything useful 
 
 
     def evaluate(self, expr: Expr):

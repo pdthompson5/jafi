@@ -4,6 +4,7 @@ from scanner import Scanner
 from jafi_parser import Parser
 from ast_printer import AST_Printer
 from interpreter import Interpreter
+from runtime_error import RuntimeError
 
 
 class Jafi:
@@ -39,5 +40,5 @@ class Jafi:
         for expr in expressions:
             try:
                 print(self.interpreter.evaluate(expr))
-            except:
+            except RuntimeError:
                 sys.exit(70)
