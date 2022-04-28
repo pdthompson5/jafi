@@ -10,18 +10,32 @@ from native_function import NativeFunction
 class Interpreter(Visitor):
     def __init__(self) -> None:
         standard_env = {
+        # Arithmetic
         "+" : NativeFunction("+", 2, lambda a, b: a[0] + a[1]),
         "-" : NativeFunction("-", 2, lambda a, b: a[0] - a[1]),
         "*" : NativeFunction("*", 2, lambda a, b: a[0] * a[1]),
         "/" : NativeFunction("/", 2, lambda a, b: a[0] / a[1]),
         "%" : NativeFunction("%", 2, lambda a, b: a[0] % a[1]),
+
+        # Comparsions 
+        ">" : NativeFunction(">", 2, lambda a, b: a[0] > a[1]),
+        "<" : NativeFunction("<", 2, lambda a, b: a[0] < a[1]),
+        ">=" : NativeFunction(">=", 2, lambda a, b: a[0] >= a[1]),
+        "<=" : NativeFunction("<=", 2, lambda a, b: a[0] <= a[1]),
+        "eq" : NativeFunction("%", 2, lambda a, b: a[0] == a[1]),
+        
+        # Data structures
         "list" : NativeFunction("list", -1, lambda a, b: a),
+        "tuple" : NativeFunction("tuple", -1, lambda a, b: tuple(a)),
+        "dict"  : NativeFunction("dict", -1, lambda a, b: dict(a)),
+
+        # Data structure management 
         "head" : NativeFunction("head", 1, lambda a, b: a[0][0]),
         "tail" : NativeFunction("tail", 1, lambda a, b: a[0][len(a[0])-1]),
         "index" : NativeFunction("index", 2, lambda a, b: a[0][int(a[1])]),
-        "tuple" : NativeFunction("tuple", -1, lambda a, b: tuple(a)),
-        "dict"  : NativeFunction("dict", -1, lambda a, b: dict(a)),
         "look_up" : NativeFunction("look_up", 2, lambda a, b: a[0][a[1]])
+
+        # Add -> Replace, delete, maybe more
         }
         self.env = Environment(standard_env)
 
