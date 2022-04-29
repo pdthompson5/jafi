@@ -1,11 +1,15 @@
-def foo(a){
-    +(a, 5)
+# 1. Given a list of integers, return a list where each integer is multiplied by 2.
+
+
+def doubling(){
+    map(*(2))
 }
 
-def bar(a){
-    *(a, 2)
-}
+#set double = doubling()
 
 
-set foobar = compose(foo, bar)
-foobar(5)
+
+
+#This should parse to: functionCall.  Instead it is parsing to functionCall, Grouping
+doubling()(list(1, 2, 3))
+

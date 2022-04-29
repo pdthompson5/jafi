@@ -116,7 +116,7 @@ class Parser:
     def function_call(self):
         expr = self.variable()
 
-        if self.check(TokenType.LEFT_PAREN):
+        while self.check(TokenType.LEFT_PAREN):
             paren = self.advance()
             self.logger.info("Matched function call")
             arguments = []
