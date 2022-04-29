@@ -1,15 +1,36 @@
 # 1. Given a list of integers, return a list where each integer is multiplied by 2.
 
 
-def doubling(){
-    map(*(2))
+def doubling(listA){
+    map(*(2), listA)
 }
 
-#set double = doubling()
+doubling(list(1, 2, 3))
+
+
+# 2. Given a list of integers, return a list where each integer is multiplied with itself.
+def square(listA){
+    map(def a(x){*(x, x)}, listA)
+}
+
+square(list(1, 2, 3))
 
 
 
+# 3. Given a list of non-negative integers, return an integer list of the rightmost digits.
+def rightDigit(listA){
+    map(def mod10(x){%(x, 10)}, listA)
+}
 
-#This should parse to: functionCall.  Instead it is parsing to functionCall, Grouping
-doubling()(list(1, 2, 3))
 
+rightDigit(list(124, 45, 245))
+
+
+
+# 4. Given a list of strings, return a list where each string has "*" added at its end.
+
+def addStar(listA){
+    map(def a(x){+(x, "*")}, listA)
+}
+
+addStar(list("This", "other"))

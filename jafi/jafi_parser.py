@@ -19,6 +19,7 @@ class Parser:
 
         self.tokens = tokens
         self.current = 0
+        self.had_error = False
 
     def parse(self) -> List[Expr]:
         expressions = []
@@ -26,6 +27,7 @@ class Parser:
             try:
                 expressions.append(self.expression())
             except:
+                self.had_error = True
                 return expressions
         return expressions
 

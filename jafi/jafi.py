@@ -32,6 +32,9 @@ class Jafi:
 
         parser = Parser(tokens, self.log_level)
         expressions = parser.parse()
+
+        if(parser.had_error):
+            sys.exit(65)
         
         # printer = AST_Printer()
         # for expr in expressions:
