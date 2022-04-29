@@ -32,5 +32,9 @@ def reduce(arguments, interpreter):
 
     return start_value
 
-def cons(arguments, interpreter):
-    return "Not implemented"
+from jafi_callable import CompositeFunction
+def compose(arguments, interpreter):
+    functions = arguments.copy()
+    functions.reverse()
+
+    return CompositeFunction(functions[0].arity, functions)

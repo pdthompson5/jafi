@@ -44,7 +44,8 @@ class Interpreter(Visitor):
         # Functional paradigm functions
         "map" : NativeFunction("map", 2, standard_lib.map),
         "filter" : NativeFunction("filter", 2, standard_lib.filter),
-        "reduce" : NativeFunction("reduce", 3, standard_lib.reduce)
+        "reduce" : NativeFunction("reduce", 3, standard_lib.reduce),
+        "compose" : NativeFunction("compose", -1, standard_lib.compose)
 
         }
         self.env = Environment(standard_env)

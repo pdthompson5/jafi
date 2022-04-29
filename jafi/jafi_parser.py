@@ -155,7 +155,7 @@ class Parser:
             return Grouping(paren, enclosed)
         else:
             report_error_token(self.peek(), "Expect expression")
-            return None 
+            raise Exception()
 
 
 

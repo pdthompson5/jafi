@@ -17,12 +17,12 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../j
 def get_relative_path(path: str):
     return Path(__file__).parent.joinpath(path)
 
-# test_names = os.listdir(get_relative_path("test_resources/"))
-test_names = [
-    "curry",
-    "access_global_var",
-    "local_function_env"
-]
+test_names = os.listdir(get_relative_path("test_resources/"))
+# test_names = [
+#     "curry",
+#     "access_global_var",
+#     "local_function_env"
+# ]
 
 @pytest.mark.parametrize("test_name", test_names)
 def test_run_file(test_name):
