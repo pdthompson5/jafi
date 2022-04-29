@@ -36,13 +36,15 @@ class Interpreter(Visitor):
         "tail" : NativeFunction("tail", 1, lambda a, b: a[0][len(a[0])-1]),
         "index" : NativeFunction("index", 2, lambda a, b: a[0][int(a[1])]),
         "look_up" : NativeFunction("look_up", 2, lambda a, b: a[0][a[1]]),
+        "cons" : NativeFunction("cons", 2, lambda a, b: [a[0]] + a[1]),
 
         # Add -> Replace, delete, maybe more
 
 
         # Functional paradigm functions
         "map" : NativeFunction("map", 2, standard_lib.map),
-        "filter" : NativeFunction("filter", 2, standard_lib.filter)
+        "filter" : NativeFunction("filter", 2, standard_lib.filter),
+        "reduce" : NativeFunction("reduce", 3, standard_lib.reduce)
 
         }
         self.env = Environment(standard_env)

@@ -24,7 +24,13 @@ def filter(arguments, interpreter):
     return new_list
 
 def reduce(arguments, interpreter):
-    return "Not implemented"
+    start_value = arguments[0]
+    function = arguments[1]
+
+    for element in arguments[2]:
+        start_value = function.call([start_value, element], interpreter, Token("", TokenType.NONE, None, -1))
+
+    return start_value
 
 def cons(arguments, interpreter):
     return "Not implemented"

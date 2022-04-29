@@ -1,7 +1,4 @@
 set my_list = list(1, 7, 3, 8)
 
 
-
-
-
-filter(>(5), my_list)
+cons(5, my_list)
