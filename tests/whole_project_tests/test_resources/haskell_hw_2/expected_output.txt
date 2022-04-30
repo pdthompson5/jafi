@@ -1,0 +1,24 @@
+<function doubling>
+[2, 4, 6]
+[12, 16, 12, 16, -2]
+[]
+<function square>
+[1, 4, 9]
+[36, 64, 36, 64, 1]
+[]
+<function rightDigit>
+[1, 2, 3]
+[6, 8, 6, 8, 1]
+[0, 0]
+<function addStar>
+[a*, bb*, ccc*]
+[hello*, there*]
+[**]
+<function lower>
+[hello, hi]
+[aaa, bbb, ccc]
+[kitten, chocolate]
+<function noX>
+[a, bb, c]
+[a, bb, c]
+[[]]
