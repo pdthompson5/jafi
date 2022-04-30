@@ -7,3 +7,5 @@ tests for:
     filter
     map
     reduce 
+
+infix functions

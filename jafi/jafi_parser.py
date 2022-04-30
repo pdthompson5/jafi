@@ -111,9 +111,26 @@ class Parser:
             
             return IfExpr(keyword, condition, if_true, else_clause)
         else:
-            return self.function_call()
+            return self.infix_function_call()
 
 # TODO: Check if you can use parenthesis inside of parameter lists -> You should be able to 
+
+    def infix_function_call(self):
+        if self.match(TokenType.TICK):
+            left_paren = self.consume(TokenType.LEFT_PAREN, "Expect '(' after infix function call tick")
+
+            arguments = []
+            arguments.append(self.expression())
+
+            l_value = self.variable()
+
+            arguments.append(self.expression())
+
+            self.consume(TokenType.RIGHT_PAREN, "Expect '(' after infix function argument list")
+
+            return FunctionCall(left_paren, l_value, arguments)
+        else:
+            return self.function_call()
 
     def function_call(self):
         expr = self.variable()
@@ -188,7 +205,7 @@ class Parser:
     
     def consume(self, type: TokenType, message : str):
         if type == self.peek().type:
-            self.advance()
+            return self.advance()
         else:
             report_error_token(self.peek(), message)
             self.advance()

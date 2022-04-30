@@ -9,6 +9,7 @@ class TokenType(Enum):
     SEMICOLON = auto()
     COLON = auto()
     EQUAL = auto()
+    TICK = auto()
 
     IDENTIFIER = auto()
     STRING = auto()
