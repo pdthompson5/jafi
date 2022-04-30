@@ -1,11 +1,10 @@
 # 1. Given a list of integers, return a list where each integer is multiplied by 2.
-
-
 def doubling(listA){
     map(*(2), listA)
 }
 
 doubling(list(1, 2, 3))
+doubling(list(6, 8, 6, 8, -1))
 
 
 # 2. Given a list of integers, return a list where each integer is multiplied with itself.
@@ -46,7 +45,7 @@ lower(list("This", "othAFr"))
 # 6. Given a list of strings, return a list where each string has all its "x" removed.
 
 def noX(listA){
-    map(filter(not_eq("x")), listA)
+    map(filter(not_eq('x')), listA)
 }
 
 noX(list("Txix", "othAFr"))

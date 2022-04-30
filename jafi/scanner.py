@@ -67,6 +67,10 @@ class Scanner:
             elif current_char == "\n": self.line += 1
             elif current_char == "\'": self.char()
             elif current_char == '"' : self.string()
+            # negative numbers or minus function
+            elif current_char == "-" : 
+                if self.is_digit(self.peek()): self.number("0", negative=True)
+                else: self.identifier(current_char)
             elif self.is_digit(current_char): self.number(current_char)
             else: self.identifier(current_char)
 
@@ -96,6 +100,9 @@ class Scanner:
     def peek(self) -> str:
         return self.source[self.current]
 
+    def peek_next(self) -> str:
+        return self.source[self.current+1]
+
     def advance(self) -> str:
         character = self.source[self.current]
         self.current += 1
@@ -104,7 +111,7 @@ class Scanner:
     def is_digit(self, a):
         return a in {str(x) for x in range(0, 10)}
     
-    def number(self, digit: str):
+    def number(self, digit: str, negative = False):
         while not self.is_at_end() and self.peek() != "." and self.is_digit(self.peek()):
             digit += self.advance()
 
@@ -114,6 +121,9 @@ class Scanner:
                 digit += self.advance()       
 
         digit_as_int = float(digit)
+
+        if negative:
+            digit_as_int = -digit_as_int
 
         self.add_token((digit, TokenType.NUMBER, digit_as_int))
 

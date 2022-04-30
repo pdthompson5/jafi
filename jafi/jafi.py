@@ -27,6 +27,8 @@ class Jafi:
         scanner = Scanner(file_contents, self.log_level)
         tokens = scanner.scan()
 
+        # for token in tokens:
+        #     print(token)
 
         parser = Parser(tokens, self.log_level)
         expressions = parser.parse()
