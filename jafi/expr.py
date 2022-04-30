@@ -16,6 +16,14 @@ class FunctionDeclaration(Expr):
     def accept(self, visitor):
         return visitor.visit_function_declaration(self)
 
+class LambdaExpr(Expr):
+    def __init__(self, name : Token, parameters : List[Token], body : Expr, ):
+        self.name = name
+        self.parameters = parameters
+        self.body = body
+    def accept(self, visitor):
+        return visitor.visit_lambda_expr(self)
+
 class VariableDeclaration(Expr):
     def __init__(self, name : Token, initializer : Expr, ):
         self.name = name

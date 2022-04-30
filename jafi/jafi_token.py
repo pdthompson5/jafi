@@ -10,6 +10,7 @@ class TokenType(Enum):
     COLON = auto()
     EQUAL = auto()
     TICK = auto()
+    LAMBDA = auto()
 
     IDENTIFIER = auto()
     STRING = auto()

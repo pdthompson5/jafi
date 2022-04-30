@@ -158,11 +158,29 @@ class Parser:
             return self.primary()
 
     def primary(self):
+        if self.check(TokenType.LAMBDA):
+            return self.lambda_expr()
         if self.check_list([TokenType.TRUE, TokenType.FALSE, TokenType.STRING, TokenType.NUMBER, TokenType.NONE]):
             self.logger.info("Matched literal")
             return Literal(self.advance().literal)
         else:
             return self.grouping()
+
+    def lambda_expr(self):
+        
+        keyword = self.advance()
+        parameters = []
+
+        while self.peek_next().type == TokenType.COMMA:
+            parameters.append(self.advance())
+            self.advance() #consume comma
+        if self.check(TokenType.IDENTIFIER):
+            parameters.append(self.advance())
+
+        self.consume(TokenType.COLON, "Expect ':' after lambda parameter list")
+        body = self.expression()
+        
+        return LambdaExpr(keyword, parameters, body)
     
     def grouping(self):
         if self.check(TokenType.LEFT_PAREN):
@@ -186,6 +204,9 @@ class Parser:
 
     def peek(self) -> Token:
         return self.tokens[self.current]
+
+    def peek_next(self) -> Token:
+        return self.tokens[self.current+1]
 
     def is_at_end(self) -> bool:
         return self.peek().type == TokenType.EOF

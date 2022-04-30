@@ -7,6 +7,10 @@ class Visitor(ABC):
         pass
 
     @abstractmethod
+    def visit_lambda_expr(self, expr: LambdaExpr):
+        pass
+
+    @abstractmethod
     def visit_variable_declaration(self, expr: VariableDeclaration):
         pass
 

@@ -53,6 +53,7 @@ class Scanner:
             ":" : TokenType.COLON,
             "=" : TokenType.EQUAL,
             "`" : TokenType.TICK,
+            "\\" : TokenType.LAMBDA,
         }
 
 

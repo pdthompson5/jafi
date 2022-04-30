@@ -85,6 +85,9 @@ class Interpreter(Visitor):
         self.env.put(expr.name, function)
         return function
     
+    def visit_lambda_expr(self, expr: LambdaExpr):
+        return JafiFunction(expr, self.env)
+    
     def visit_variable_declaration(self, expr: VariableDeclaration):
         initializer = self.evaluate(expr.initializer)
         self.env.put(expr.name, initializer)

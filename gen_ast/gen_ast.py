@@ -29,13 +29,14 @@ import os
  
 my_dict = {
     "FunctionDeclaration" : {"name": "Token", "parameters" : "List[Token]", "body" : "Expr"},
+    "LambdaExpr" : {"name" : "Token", "parameters" : "List[Token]", "body" : "Expr"},
     "VariableDeclaration" : {"name": "Token", "initializer" : "Expr"},
     "Variable" : {"name": "Token"},
     "Literal" : {"literal": "object"},
     "Grouping" : {"paren": "Token", "enclosed" : "Expr"},
     "Flow" : {"keyword": "Token", "starting_val" : "Expr", "body" : "List[Expr]"},
     "FunctionCall" : {"paren" : "Token", "l_value" : "Expr", "arguments" : "List[Expr]"},
-    "IfExpr" : {"keyword" : "Token", "condition" : "Expr", "if_true" : "Expr", "else_clause" : "Expr"}
+    "IfExpr" : {"keyword" : "Token", "condition" : "Expr", "if_true" : "Expr", "else_clause" : "Expr"},
 }
 
 os.remove("jafi/expr.py")
