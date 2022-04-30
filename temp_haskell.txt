@@ -5,6 +5,7 @@ def doubling(listA){
 
 doubling(list(1, 2, 3))
 doubling(list(6, 8, 6, 8, -1))
+doubling(list())
 
 
 # 2. Given a list of integers, return a list where each integer is multiplied with itself.
@@ -13,6 +14,8 @@ def square(listA){
 }
 
 square(list(1, 2, 3))
+square(list(6, 8, -6, -8, 1))
+square(list())
 
 
 
@@ -21,7 +24,10 @@ def rightDigit(listA){
     map(\x :`(x % 10), listA)
 }
 
-rightDigit(list(124, 45, 245))
+rightDigit(list(1, 22, 93))
+rightDigit(list(16, 8, 886, 8, 1))
+rightDigit(list(10, 0))
+
 
 
 
