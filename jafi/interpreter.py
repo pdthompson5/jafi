@@ -136,7 +136,7 @@ class Interpreter(Visitor):
     def stringify(value: object):
         if isinstance(value, list):
             if Interpreter.is_char_list(value):
-                return "".join([x for x in value])
+                return "\"" + "".join([x for x in value]) + "\""
             return "[" + ", ".join([Interpreter.stringify(x) for x in value])  + "]"
         if isinstance(value, float):
             value_str = str(value)

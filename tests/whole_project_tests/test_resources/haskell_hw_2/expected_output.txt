@@ -11,14 +11,14 @@
 [6, 8, 6, 8, 1]
 [0, 0]
 <function addStar>
-[a*, bb*, ccc*]
-[hello*, there*]
-[**]
+["a*", "bb*", "ccc*"]
+["hello*", "there*"]
+["**"]
 <function lower>
-[hello, hi]
-[aaa, bbb, ccc]
-[kitten, chocolate]
+["hello", "hi"]
+["aaa", "bbb", "ccc"]
+["kitten", "chocolate"]
 <function noX>
-[a, bb, c]
-[a, bb, c]
+["a", "bb", "c"]
+["a", "bb", "c"]
 [[]]
