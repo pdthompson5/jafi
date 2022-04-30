@@ -1,4 +1,4 @@
 <function foo>
 <function bar>
 <<function bar><function foo>>
-15.0
+15
