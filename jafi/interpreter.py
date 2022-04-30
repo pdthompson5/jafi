@@ -26,8 +26,13 @@ class Interpreter(Visitor):
         "<=" : NativeFunction("<=", 2, lambda a, b: a[0] <= a[1]),
         "eq" : NativeFunction("eq", 2, lambda a, b: a[0] == a[1]),
         "not_eq" : NativeFunction("not_eq", 2, lambda a, b: not (a[0] == a[1])),
-        "not" : NativeFunction("not", 1, lambda a, b: not a[1]),
         "pow" : NativeFunction("pow", 2, lambda a, b: pow(a[0], a[1])),
+
+        #logical operators
+        "not" : NativeFunction("not", 1, lambda a, b: not a[0]),
+        "and" : NativeFunction("and", 2, lambda a, b:  a[0] and a[1]),
+        "or" : NativeFunction("or", 2, lambda a, b: a[0] or a[1]),
+
         
         # Data structures
         "list" : NativeFunction("list", -1, lambda a, b: a),
@@ -40,6 +45,9 @@ class Interpreter(Visitor):
         "index" : NativeFunction("index", 2, lambda a, b: a[0][int(a[1])]),
         "look_up" : NativeFunction("look_up", 2, lambda a, b: a[0][a[1]]),
         "cons" : NativeFunction("cons", 2, lambda a, b: [a[0]] + a[1]),
+        "elem" : NativeFunction("elem", 2, lambda a, b: a[0] in a[1]),
+        "len" : NativeFunction("len", 1, lambda a, b: len(a[0])),
+        
 
         # Add -> Replace, delete, maybe more
 
@@ -49,7 +57,10 @@ class Interpreter(Visitor):
         "filter" : NativeFunction("filter", 2, standard_lib.filter),
         "reduce" : NativeFunction("reduce", 3, standard_lib.reduce),
         "compose" : NativeFunction("compose", -1, standard_lib.compose),
-        "to_lower" : NativeFunction("to_lower", 1, standard_lib.to_lower)
+        "to_lower" : NativeFunction("to_lower", 1, standard_lib.to_lower),
+
+        #set operations
+        
 
         }
         self.env = Environment(standard_env)
