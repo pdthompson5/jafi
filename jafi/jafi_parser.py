@@ -160,7 +160,7 @@ class Parser:
     def primary(self):
         if self.check(TokenType.LAMBDA):
             return self.lambda_expr()
-        if self.check_list([TokenType.TRUE, TokenType.FALSE, TokenType.STRING, TokenType.NUMBER, TokenType.NONE]):
+        if self.check_list([TokenType.TRUE, TokenType.FALSE, TokenType.STRING, TokenType.CHAR, TokenType.NUMBER, TokenType.NONE]):
             self.logger.info("Matched literal")
             return Literal(self.advance().literal)
         else:

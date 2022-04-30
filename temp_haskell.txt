@@ -10,7 +10,7 @@ doubling(list(1, 2, 3))
 
 # 2. Given a list of integers, return a list where each integer is multiplied with itself.
 def square(listA){
-    map(def a(x){`(x * x)}, listA)
+    map(\x :`(x * x), listA)
 }
 
 square(list(1, 2, 3))
@@ -19,9 +19,8 @@ square(list(1, 2, 3))
 
 # 3. Given a list of non-negative integers, return an integer list of the rightmost digits.
 def rightDigit(listA){
-    map(def mod10(x){`(x % 10)}, listA)
+    map(\x :`(x % 10), listA)
 }
-
 
 rightDigit(list(124, 45, 245))
 
@@ -30,7 +29,7 @@ rightDigit(list(124, 45, 245))
 # 4. Given a list of strings, return a list where each string has "*" added at its end.
 
 def addStar(listA){
-    map(def a(x){+(x, "*")}, listA)
+    map(\x : `(x + "*"), listA)
 }
 
 addStar(list("This", "other"))
@@ -50,4 +49,4 @@ def noX(listA){
     map(filter(not_eq("x")), listA)
 }
 
-#noX(list("Thix", "othAFr"))
+noX(list("Txix", "othAFr"))

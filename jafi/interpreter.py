@@ -25,7 +25,7 @@ class Interpreter(Visitor):
         ">=" : NativeFunction(">=", 2, lambda a, b: a[0] >= a[1]),
         "<=" : NativeFunction("<=", 2, lambda a, b: a[0] <= a[1]),
         "eq" : NativeFunction("eq", 2, lambda a, b: a[0] == a[1]),
-        "not_eq" : NativeFunction("not_eq", 2, lambda a, b: not a[0] == a[1]),
+        "not_eq" : NativeFunction("not_eq", 2, lambda a, b: not (a[0] == a[1])),
         "not" : NativeFunction("not", 1, lambda a, b: not a[1]),
         "pow" : NativeFunction("pow", 2, lambda a, b: pow(a[0], a[1])),
         

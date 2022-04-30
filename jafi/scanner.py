@@ -65,6 +65,7 @@ class Scanner:
             elif current_char == "\t": pass
             elif current_char == "\r": pass
             elif current_char == "\n": self.line += 1
+            elif current_char == "\'": self.char()
             elif current_char == '"' : self.string()
             elif self.is_digit(current_char): self.number(current_char)
             else: self.identifier(current_char)
@@ -116,6 +117,16 @@ class Scanner:
 
         self.add_token((digit, TokenType.NUMBER, digit_as_int))
 
+    def char(self):
+        character = ""
+        if not self.is_at_end() and self.peek() != "'":
+            character += self.advance()
+        if self.is_at_end() or self.peek() != "\'":
+            report_error("Unterminated Character", self.line)
+            return
+        self.advance() #consume closing "'"
+
+        self.add_token((character, TokenType.CHAR, character))
 
     def string(self):
         string = ""

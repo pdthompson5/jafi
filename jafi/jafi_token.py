@@ -14,6 +14,7 @@ class TokenType(Enum):
 
     IDENTIFIER = auto()
     STRING = auto()
+    CHAR = auto()
     NUMBER = auto()
 
     FALSE = auto()
