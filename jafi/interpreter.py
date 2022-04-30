@@ -24,7 +24,9 @@ class Interpreter(Visitor):
         "<" : NativeFunction("<", 2, lambda a, b: a[0] < a[1]),
         ">=" : NativeFunction(">=", 2, lambda a, b: a[0] >= a[1]),
         "<=" : NativeFunction("<=", 2, lambda a, b: a[0] <= a[1]),
-        "eq" : NativeFunction("%", 2, lambda a, b: a[0] == a[1]),
+        "eq" : NativeFunction("eq", 2, lambda a, b: a[0] == a[1]),
+        "not_eq" : NativeFunction("not_eq", 2, lambda a, b: not a[0] == a[1]),
+        "not" : NativeFunction("not", 1, lambda a, b: not a[1]),
         "pow" : NativeFunction("pow", 2, lambda a, b: pow(a[0], a[1])),
         
         # Data structures
@@ -46,7 +48,8 @@ class Interpreter(Visitor):
         "map" : NativeFunction("map", 2, standard_lib.map),
         "filter" : NativeFunction("filter", 2, standard_lib.filter),
         "reduce" : NativeFunction("reduce", 3, standard_lib.reduce),
-        "compose" : NativeFunction("compose", -1, standard_lib.compose)
+        "compose" : NativeFunction("compose", -1, standard_lib.compose),
+        "to_lower" : NativeFunction("to_lower", 1, standard_lib.to_lower)
 
         }
         self.env = Environment(standard_env)

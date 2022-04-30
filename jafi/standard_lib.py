@@ -38,3 +38,6 @@ def compose(arguments, interpreter):
     functions.reverse()
 
     return CompositeFunction(functions[0].arity, functions)
+
+def to_lower(arguments, interpreter):
+    return arguments[0].lower()
