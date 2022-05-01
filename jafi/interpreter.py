@@ -41,7 +41,7 @@ class Interpreter(Visitor):
 
         # Data structure management 
         "head" : NativeFunction("head", 1, lambda a, b: a[0][0]),
-        "tail" : NativeFunction("tail", 1, lambda a, b: a[0][len(a[0])-1]),
+        "tail" : NativeFunction("tail", 1, lambda a, b: a[0][1:]),
         "index" : NativeFunction("index", 2, lambda a, b: a[0][int(a[1])]),
         "look_up" : NativeFunction("look_up", 2, lambda a, b: a[0][a[1]]),
         "cons" : NativeFunction("cons", 2, lambda a, b: [a[0]] + a[1]),
