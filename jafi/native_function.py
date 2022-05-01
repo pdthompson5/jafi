@@ -25,3 +25,6 @@ class NativeFunction(JafiCallable):
                 return self.function(self.defined_arguments + arguments , interpreter)
             else:
                 raise RuntimeError(paren.line, f"Function '{self.name}' got {len(true_arguments)} arguments. Expected: {self.arity}.")
+    
+    def __str__(self):
+        return f"<function {self.name}>"

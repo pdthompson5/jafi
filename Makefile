@@ -1,7 +1,7 @@
 
 .PHONY: jafi
 jafi:
-	python jafi
+	python run_jafi.py
 
 .PHONY: gen_ast
 gen_ast: 

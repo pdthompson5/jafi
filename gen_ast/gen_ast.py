@@ -1,28 +1,3 @@
-"""
-FunctionDeclaration
-    name: Token 
-    parameters: List[Token]
-    body: Expr
-VariableDeclaration
-    name: Token
-    initializer: Expr
-FunctionCall
-    paren: Token 
-    callee : Expr
-    arguments : List[Expr]
-Variable
-    name: Token 
-Literal
-    literal: Token 
-Grouping
-    paren: Token
-    enclosed: Expr
-Flow
-    keyword: Token 
-    starting_values: List[Expr]
-    body: List[Expr]
-"""
-
 import os
 
 
