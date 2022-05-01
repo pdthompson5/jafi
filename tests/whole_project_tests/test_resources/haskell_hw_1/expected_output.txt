@@ -1,0 +1,19 @@
+<function isSortedAsc>
+<function isSortedDesc>
+<function isSorted>
+True
+False
+True
+True
+<function areSorted>
+True
+False
+True
+<function isIn>
+True
+False
+False
+<function areIn>
+True
+False
+True
