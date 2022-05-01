@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
+
 from typing import List
-from jafi_token import Token
+from .jafi_token import Token
 
 class JafiCallable(ABC):
     def __init__(self, arity : int) -> None:

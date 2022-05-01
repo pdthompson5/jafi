@@ -1,7 +1,8 @@
 
 from abc import ABC, abstractmethod
+
 from typing import List
-from jafi_token import Token 
+from .jafi_token import Token 
 
 class Expr(ABC):
     @abstractmethod

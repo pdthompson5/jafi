@@ -1,5 +1,5 @@
-from jafi_token import Token
-from runtime_error import RuntimeError
+from .jafi_token import Token
+from .runtime_error import RuntimeError
 import logging
 
 

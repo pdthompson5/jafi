@@ -1,14 +1,11 @@
 
+from .jafi_token import Token
+from .jafi_token import TokenType 
+from .expr import *
+from .error_reporting import report_error_token
 
-
-
-from ast import IfExp
-from jafi_token import Token
-from jafi_token import TokenType 
-from typing import List
-from expr import *
-from error_reporting import report_error_token
 import logging
+from typing import List
 
 # TODO: See if I can add infix operators into my grammar then just desugar them to functions 
 class Parser:

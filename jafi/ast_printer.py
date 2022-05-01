@@ -1,5 +1,7 @@
-from expr import *
-from visitor import Visitor
+
+
+from .expr import *
+from .visitor import Visitor
 
 
 class AST_Printer(Visitor):

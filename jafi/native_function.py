@@ -1,8 +1,10 @@
 from typing import List
 
-from jafi_callable import JafiCallable
-from runtime_error import RuntimeError
-from jafi_token import Token
+
+
+from .jafi_callable import JafiCallable
+from .runtime_error import RuntimeError
+from .jafi_token import Token
 
 
 class NativeFunction(JafiCallable):

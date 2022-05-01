@@ -1,6 +1,6 @@
 import logging
 import sys
-import jafi
+from jafi import jafi
 
 
 if __name__ == "__main__":

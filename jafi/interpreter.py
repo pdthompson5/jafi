@@ -1,13 +1,13 @@
-from expr import *
-from jafi_callable import JafiCallable
-from jafi_function import JafiFunction
-from visitor import Visitor
-from environment import Environment
-from runtime_error import RuntimeError
-from error_reporting import report_error
-from native_function import NativeFunction
+from .expr import *
+from .jafi_callable import JafiCallable
+from .jafi_function import JafiFunction
+from .visitor import Visitor
+from .environment import Environment
+from .runtime_error import RuntimeError
+from .error_reporting import report_error
+from .native_function import NativeFunction
 
-import standard_lib
+from . import standard_lib
 
 class Interpreter(Visitor):
     def __init__(self) -> None:
@@ -111,6 +111,7 @@ class Interpreter(Visitor):
     
     def visit_flow(self, expr: Flow):
         pass
+
     
     def visit_function_call(self, expr: FunctionCall):
         left_side = self.evaluate(expr.l_value)

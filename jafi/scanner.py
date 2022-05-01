@@ -1,6 +1,6 @@
 
-from error_reporting import report_error
-from jafi_token import Token, TokenType
+from .error_reporting import report_error
+from .jafi_token import Token, TokenType
 
 import logging
 

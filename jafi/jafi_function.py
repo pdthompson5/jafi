@@ -1,9 +1,11 @@
 from typing import List
-from jafi_callable import JafiCallable
-from environment import Environment
-from expr import FunctionDeclaration
-from jafi_token import Token
-from runtime_error import RuntimeError
+
+
+from .jafi_callable import JafiCallable
+from .environment import Environment
+from .expr import FunctionDeclaration
+from .jafi_token import Token
+from .runtime_error import RuntimeError
 
 
 

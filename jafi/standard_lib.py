@@ -1,7 +1,7 @@
 
 
-from jafi_token import Token, TokenType
-
+from .jafi_token import Token, TokenType
+from .jafi_callable import CompositeFunction
 
 def map(arguments, interpreter):
     function = arguments[0]
@@ -32,7 +32,7 @@ def reduce(arguments, interpreter):
 
     return start_value
 
-from jafi_callable import CompositeFunction
+
 def compose(arguments, interpreter):
     functions = arguments.copy()
     functions.reverse()

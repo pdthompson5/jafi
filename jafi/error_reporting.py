@@ -1,5 +1,6 @@
 import sys
-from jafi_token import Token
+
+from .jafi_token import Token
 
 def report_error(message: str, line: int):
     print(f"[Jafi Error] {message} Line {line}", file=sys.stderr)

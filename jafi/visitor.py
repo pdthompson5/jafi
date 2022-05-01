@@ -1,6 +1,7 @@
 
+
 from abc import ABC, abstractmethod
-from expr import *
+from .expr import *
 class Visitor(ABC):
     @abstractmethod
     def visit_function_declaration(self, expr: FunctionDeclaration):
