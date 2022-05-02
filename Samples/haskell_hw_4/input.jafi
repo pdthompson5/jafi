@@ -1,0 +1,57 @@
+# 1. Given a list of integers, return a list of the integers, omitting any that are less than 0.
+def noNeg(){
+    filter(<=(0))
+}
+
+noNeg()(list(1, -2))
+noNeg()(list(-3, -3, 3, 3))
+noNeg()(list(-1, -1, -1))
+
+
+# 2. Given a list of non-negative integers, return a list of those numbers except omitting any that end with 9. 
+
+def no9(listA){
+    filter(compose(not_eq(9), \x : `(x % 10)), listA)
+}   
+
+no9(list(1, 2, 19))
+no9(list(9, 19, 29, 3))
+no9(list(1, 2, 3))
+
+# 3. Given a list of integers, return a list of those numbers, omitting any that are between 13 and 19 inclusive.
+def noTeen(listA){
+    filter(\x : `(`(x < 13) or `(x > 19)), listA)
+}
+
+noTeen(list(12, 13, 19, 20))
+noTeen(list(1, 14, 1))
+noTeen(list(15))
+
+
+#4. Given a list of strings, return a list of the strings, omitting any string that contains a "z". 
+
+def noZ(listA){
+    filter(\x : not(`(elem('z', x) or elem('Z', x))), listA)
+}
+
+
+noZ(list("aaa", "bbb", "aza"))
+noZ(list("hziz", "hzello", "hi"))
+noZ(list("hello", "howz", "are", "youz"))
+
+# 5. Given a list of strings, return a list of the strings, omitting any string length 4 or more.
+def noLong(listA){
+    filter(\x : `(len(x) < 4), listA)
+}
+noLong(list("this", "not", "too", "long"))
+noLong(list("a", "bbb", "cccc"))
+noLong(list("cccc", "cccc", "cccc"))
+
+# 6. Given a list of strings, return a list of the strings, omitting any string length 3 or 4.
+def no34(listA){
+    filter(\x : not(`(eq(len(x), 4) or eq(len(x), 3))), listA)
+}
+
+no34(list("a", "bb", "ccc"))
+no34(list("a", "bb", "ccc", "dddd"))
+no34(list("ccc", "dddd", "apple"))

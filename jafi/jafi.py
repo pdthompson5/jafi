@@ -5,7 +5,7 @@ from typing import List
 from .scanner import Scanner
 from .jafi_parser import Parser
 from .ast_printer import AST_Printer
-from .interpreter import Interpreter
+from .interpreter import Interpreter, stringify, to_jafi, to_python
 from .runtime_error import RuntimeError
 
 from .expr import FunctionCall, Variable, Literal
@@ -31,11 +31,11 @@ class Jafi:
         name = Token(function_name, TokenType.IDENTIFIER, None, -1)
         l_value = Variable(name)
         
-        tokenized_arguments = [Literal(argument) for argument in args]
+        tokenized_arguments = [Literal(to_jafi(argument)) for argument in args]
 
         #TODO: Convert back into python value 
             # Function go to string, char arrays go to Strings, numbers with trailing zeroes go to int
-        return self.interpreter.evaluate(FunctionCall(name, l_value, tokenized_arguments))
+        return to_python(self.interpreter.evaluate(FunctionCall(name, l_value, tokenized_arguments)))
 
 
 
@@ -59,6 +59,6 @@ class Jafi:
 
         for expr in expressions:
             try:
-                print(Interpreter.stringify(self.interpreter.evaluate(expr)))
+                print(stringify(self.interpreter.evaluate(expr)))
             except RuntimeError:
                 sys.exit(70)

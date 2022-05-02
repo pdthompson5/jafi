@@ -9,7 +9,7 @@ import io
 
 
 
-# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../jafi')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../jafi')))
 from jafi.jafi import Jafi 
 
 def get_relative_path(path: str):

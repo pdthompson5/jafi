@@ -18,10 +18,10 @@ FunctionCall  → variable (“(” (expression “,”)* expression “)”) *
 
 Variable → primary | identifier 
 
-primary → Lambda | Number | String  | Bool | None | Grouping | Char
+primary → Lambda | Number | String  | Bool | None | Char | Grouping 
 
 Lambda →”\” ((identifier “,”)* identifier)? “:” expression 
 
-Grouping → “(” expression “)”
-
 Bool → “True” | “False”
+
+Grouping → “(” expression “)”

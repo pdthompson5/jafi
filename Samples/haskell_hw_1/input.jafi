@@ -1,0 +1,52 @@
+def isSortedAsc(listA){
+    if `(len(listA) < 2)
+        then True
+        else if `(head(listA) > head(tail(listA)))
+            then False
+            else isSortedAsc(tail(listA))
+}
+
+def isSortedDesc(listA){
+    if `(len(listA) < 2)
+        then True
+        else if `(head(listA) < head(tail(listA)))
+            then False
+            else isSortedDesc(tail(listA))
+}
+
+
+
+
+def isSorted(listA){
+    `(isSortedAsc(listA) or isSortedDesc(listA))
+}
+
+
+
+
+def areSorted(listA){
+    not(`(False elem (map(isSorted, listA))))
+}
+
+
+
+
+def isIn(element, listA){
+    if `(len(listA) eq 0)
+        then False
+        else if `(head(listA) eq element)
+            then True 
+            else isIn(element, tail(listA))   
+}
+
+
+
+
+def areIn(elementList, listA){
+    if `(len(elementList) eq 0)
+        then True 
+        else if `(head(elementList) isIn listA)
+            then areIn(tail(elementList), listA)
+            else False
+}
+

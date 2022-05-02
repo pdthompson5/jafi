@@ -1,3 +1,4 @@
+from math import floor
 from .expr import *
 from .jafi_callable import JafiCallable
 from .jafi_function import JafiFunction
@@ -138,16 +139,39 @@ class Interpreter(Visitor):
         return self.evaluate(expr.enclosed)
 
 
-    def is_char_list(value):
-        return len(value) > 0 and isinstance(value[0], str) and len([x for x in value if len(x) > 1]) == 0
+def is_char_list(value):
+    return len(value) > 0 and isinstance(value[0], str) and len([x for x in value if len(x) > 1]) == 0
 
-    def stringify(value: object):
-        if isinstance(value, list):
-            if Interpreter.is_char_list(value):
-                return "\"" + "".join([x for x in value]) + "\""
-            return "[" + ", ".join([Interpreter.stringify(x) for x in value])  + "]"
-        if isinstance(value, float):
-            value_str = str(value)
-            if value_str[len(value_str)-2:] == ".0":
-                return value_str[0:len(value_str)-2]
-        return value
+def stringify(value: object):
+    if isinstance(value, list):
+        if is_char_list(value):
+            return "\"" + "".join([x for x in value]) + "\""
+        return "[" + ", ".join([stringify(x) for x in value])  + "]"
+    if isinstance(value, float):
+        value_str = str(value)
+        if value_str[len(value_str)-2:] == ".0":
+            return value_str[0:len(value_str)-2]
+    return value
+
+def to_jafi(value: object):
+    if isinstance(value, int):
+        return float(value)
+    if isinstance(value, str):
+        return list(value)
+    if isinstance(value, list):
+        return [to_jafi(x) for x in value]
+    return value
+
+def to_python(value: object):
+    if isinstance(value, list):
+        if is_char_list(value):
+            return "".join([x for x in value])
+        return [to_python(x) for x in value]
+    if isinstance(value, float):
+        if value - floor(value) < 0.00001:
+            return floor(value)
+    if isinstance(value, JafiFunction):
+        return value.__str__()
+    if isinstance(value, NativeFunction):
+        return value.__str__()
+    return value

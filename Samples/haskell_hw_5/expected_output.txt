@@ -1,0 +1,14 @@
+<function yyNotIn>
+<function noYY>
+["ay", "by", "cy"]
+["ay", "by"]
+["xxy", "yay", "zzy"]
+<function two2>
+[4, 6]
+[4]
+[0]
+<function ommit56>
+<function square56>
+[19, 11]
+[11]
+[14]
