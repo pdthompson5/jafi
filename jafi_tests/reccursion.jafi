@@ -1,5 +1,0 @@
-def count(a){
-    count(a)
-}
-
-count(15)

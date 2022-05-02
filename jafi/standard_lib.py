@@ -8,7 +8,7 @@ def map(arguments, interpreter):
 
     new_list = []
     for element in arguments[1]:
-        #TODO: Determine what to pass for token 
+        #This Token is a placeholder as I don't have anything good to pass it 
         new_list.append(function.call([element], interpreter, Token("", TokenType.NONE, None, -1)))
 
     return new_list

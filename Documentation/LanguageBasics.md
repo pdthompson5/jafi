@@ -138,3 +138,6 @@ list #<function list>
 Jafi is a Lisp-1 language so functions and variables are kept in the same namespace. This was done primarily to show that functions are first-class. 
 
 Jafi is lexically scoped with each function having its own environment with access to its enclosing environments. 
+
+# Variables 
+Variables in Jafi are immutable. They can be declared using VariableDeclaration expressions and accessed using Variable expressions. 

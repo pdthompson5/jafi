@@ -1,0 +1,8 @@
+#Adds 5 to all elements of the list
+def add5List(listA){
+    map(+(5), listA) #The function '+' is curried 
+}
+
+add5List(list(1, 2, 3)) #6, 7, 8
+
+*(15) #<function *>

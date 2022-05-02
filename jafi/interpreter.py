@@ -47,9 +47,7 @@ class Interpreter(Visitor):
         "cons" : NativeFunction("cons", 2, lambda a, b: [a[0]] + a[1]),
         "elem" : NativeFunction("elem", 2, lambda a, b: a[0] in a[1]),
         "len" : NativeFunction("len", 1, lambda a, b: len(a[0])),
-        
-
-        # Add -> Replace, delete, maybe more
+    
 
 
         # Functional paradigm functions
@@ -57,11 +55,9 @@ class Interpreter(Visitor):
         "filter" : NativeFunction("filter", 2, standard_lib.filter),
         "reduce" : NativeFunction("reduce", 3, standard_lib.reduce),
         "compose" : NativeFunction("compose", -1, standard_lib.compose),
-        "to_lower" : NativeFunction("to_lower", 1, standard_lib.to_lower),
 
-        #set operations
         
-
+        "to_lower" : NativeFunction("to_lower", 1, standard_lib.to_lower),
         }
         self.env = Environment(standard_env)
 

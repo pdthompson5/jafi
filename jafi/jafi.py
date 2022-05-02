@@ -1,4 +1,5 @@
 import sys
+import logging
 from typing import List
 
 from .scanner import Scanner
@@ -14,7 +15,7 @@ from .jafi_token import Token, TokenType
 
 class Jafi:
 
-    def __init__(self, log_level):
+    def __init__(self, log_level=logging.ERROR):
         self.log_level = log_level
         self.interpreter = Interpreter()
 

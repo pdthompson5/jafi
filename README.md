@@ -1,8 +1,7 @@
-# jafi
+# Jafi
+Author: Phil Thompson
+Email: pdthompson5@crimson.ua.edu
 
+This project was completed as part of CS403: Programming Languages at The University of Alabama 
 
-Just a functional interface
-
-
-The language has a psuedo curry 
-    Functions wait for additional arguments 
+Please see `Documentation` for information on this project.
