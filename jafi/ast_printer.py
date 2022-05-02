@@ -32,9 +32,6 @@ class AST_Printer(Visitor):
         return self.parenthesize("group", [expr.enclosed])
 
     
-    def visit_flow(self, expr: Flow):
-        return self.parenthesize("flow", [expr.starting_val] + expr.body)
-    
     def visit_function_call(self, expr: FunctionCall):
         return self.parenthesize("func", [expr.l_value] + expr.arguments)
 

@@ -25,16 +25,7 @@ class TokenType(Enum):
     ELSE = auto()
     DEF = auto()
     SET = auto()
-    FLOW = auto()
     EOF = auto()
-
-    # New keywords for static typing 
-    NUMBER_TYPE = auto()
-    STRING_TYPE = auto()
-    BOOL_TYPE = auto()
-    LIST_TYPE = auto()
-    DICT_TYPE = auto()
-    TUPLE_TYPE = auto()
     
 class Token:
     def __init__(self, lexeme: str, type: TokenType, literal: object, line: int) -> None:

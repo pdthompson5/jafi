@@ -25,10 +25,6 @@ class Scanner:
             "else" : TokenType.ELSE,
             "def" : TokenType.DEF,
             "set" : TokenType.SET,
-            "flow" : TokenType.FLOW,
-            "num" : TokenType.NUMBER_TYPE,
-            "str" : TokenType.STRING_TYPE,
-            "bool" : TokenType.BOOL_TYPE,
         }
 
     def scan(self):

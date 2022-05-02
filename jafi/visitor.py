@@ -1,7 +1,6 @@
 
-
 from abc import ABC, abstractmethod
-from .expr import *
+from expr import *
 class Visitor(ABC):
     @abstractmethod
     def visit_function_declaration(self, expr: FunctionDeclaration):
@@ -25,10 +24,6 @@ class Visitor(ABC):
 
     @abstractmethod
     def visit_grouping(self, expr: Grouping):
-        pass
-
-    @abstractmethod
-    def visit_flow(self, expr: Flow):
         pass
 
     @abstractmethod

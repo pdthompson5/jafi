@@ -1,8 +1,7 @@
 
 from abc import ABC, abstractmethod
-
 from typing import List
-from .jafi_token import Token 
+from jafi_token import Token 
 
 class Expr(ABC):
     @abstractmethod
@@ -50,14 +49,6 @@ class Grouping(Expr):
         self.enclosed = enclosed
     def accept(self, visitor):
         return visitor.visit_grouping(self)
-
-class Flow(Expr):
-    def __init__(self, keyword : Token, starting_val : Expr, body : List[Expr], ):
-        self.keyword = keyword
-        self.starting_val = starting_val
-        self.body = body
-    def accept(self, visitor):
-        return visitor.visit_flow(self)
 
 class FunctionCall(Expr):
     def __init__(self, paren : Token, l_value : Expr, arguments : List[Expr], ):

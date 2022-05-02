@@ -55,27 +55,6 @@ class Parser:
             
 
         else:
-            return self.flow()
-    
-    def flow(self):
-        if self.check(TokenType.FLOW):
-            self.logger.info("Matched flow expression")
-            keyword = self.advance()
-            self.consume(TokenType.LEFT_PAREN, "Expect '(' after flow declaration")
-            starting_val = self.expression()
-
-            self.consume(TokenType.RIGHT_PAREN, "Expect ')' after flow starting value")
-
-            self.consume(TokenType.LEFT_BRACE, "Expect '{' after flow starting value")
-            body = []
-            while not self.check(TokenType.RIGHT_BRACE):
-                body.append(self.expression())
-
-            self.consume(TokenType.RIGHT_BRACE, "Expect '}' after flow body")
-
-            return Flow(keyword, starting_val, body)
-            
-        else:
             return self.variable_declaration()
 
 

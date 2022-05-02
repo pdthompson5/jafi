@@ -102,10 +102,6 @@ class Interpreter(Visitor):
         return self.env.get(expr.name)
 
     
-    def visit_flow(self, expr: Flow):
-        pass
-
-    
     def visit_function_call(self, expr: FunctionCall):
         left_side = self.evaluate(expr.l_value)
 
