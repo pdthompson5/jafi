@@ -25,5 +25,12 @@ def foo(a){
 }
 ```
 
+Notes:
+* run_file returns the last expression executed in the jafi file
+* each instance of a jafi object maintains its environment 
+* Data returning from Jafi undergoes transformations back into Python
+  * list[Char] -> str
+  * float -> int if appropriate
+
 
 Please see `Samples/` for more detailed examples on using Jafi with Python

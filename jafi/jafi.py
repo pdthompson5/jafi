@@ -66,4 +66,4 @@ class Jafi:
                     print(stringify(eval))
             except RuntimeError:
                 sys.exit(70)
-        return eval
+        return to_python(eval)

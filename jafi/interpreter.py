@@ -170,8 +170,4 @@ def to_python(value: object):
     if isinstance(value, float):
         if value - floor(value) < 0.00001:
             return floor(value)
-    if isinstance(value, JafiFunction):
-        return value.__str__()
-    if isinstance(value, NativeFunction):
-        return value.__str__()
     return value
