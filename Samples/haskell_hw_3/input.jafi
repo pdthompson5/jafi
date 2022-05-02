@@ -4,26 +4,13 @@ def math1(listA){
     map(compose(*(10), +(1)), listA)
 }
 
-math1(list(1, 2, 3))
-math1(list(6, 8, 6, 8, 1))
-math1(list(10))
-
-
-
 # 2. Given a list of strings, return a list where each string has "y" added at its start and end.
 def moreY(listA){
     map(compose(+("y"), \x : `(x + "y")), listA)
 }
-moreY(list("a", "b", "c"))
-moreY(list("hello", "there"))
-moreY(list("yay"))
-
 
 # 3. Given a list of strings, return a list where each string is replaced by 4 copies of the string concatenated together.
 def copies4(listA){
     map(compose(\x : `(x + x), \x : `(x + x)), listA)
 }
 
-copies4(list("a", "bb", "ccc"))
-copies4(list("24", "a", ""))
-copies4(list("hello", "there"))

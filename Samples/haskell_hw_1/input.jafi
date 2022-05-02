@@ -14,22 +14,13 @@ def isSortedDesc(listA){
             else isSortedDesc(tail(listA))
 }
 
-
-
-
 def isSorted(listA){
     `(isSortedAsc(listA) or isSortedDesc(listA))
 }
 
-
-
-
 def areSorted(listA){
     not(`(False elem (map(isSorted, listA))))
 }
-
-
-
 
 def isIn(element, listA){
     if `(len(listA) eq 0)
@@ -38,9 +29,6 @@ def isIn(element, listA){
             then True 
             else isIn(element, tail(listA))   
 }
-
-
-
 
 def areIn(elementList, listA){
     if `(len(elementList) eq 0)
