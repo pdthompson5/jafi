@@ -20,7 +20,7 @@ test_names = os.listdir(get_relative_path("test_resources/"))
 
 @pytest.mark.parametrize("test_name", test_names)
 def test_run_file(test_name):
-    jafi = Jafi(logging.ERROR)
+    jafi = Jafi(logging.ERROR, debug=True)
     
 
     output = io.StringIO()

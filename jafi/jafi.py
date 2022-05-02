@@ -15,9 +15,10 @@ from .jafi_token import Token, TokenType
 
 class Jafi:
 
-    def __init__(self, log_level=logging.ERROR):
+    def __init__(self, log_level=logging.ERROR, debug=False):
         self.log_level = log_level
         self.interpreter = Interpreter()
+        self.debug = debug
 
     def read_file(self, filename: str) -> str:
         try:
@@ -57,8 +58,12 @@ class Jafi:
         # for expr in expressions:
         #     print(printer.print(expr))
 
+        eval = None
         for expr in expressions:
             try:
-                print(stringify(self.interpreter.evaluate(expr)))
+                eval = self.interpreter.evaluate(expr)
+                if self.debug:
+                    print(stringify(eval))
             except RuntimeError:
                 sys.exit(70)
+        return eval
