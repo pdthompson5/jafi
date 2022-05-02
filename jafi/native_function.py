@@ -15,9 +15,7 @@ class NativeFunction(JafiCallable):
         super().__init__(arity)
     
     def call(self, arguments : List[object], interpreter, paren : Token):
-        # currying should be possible for this as well 
-        # print(arguments)
-        if len(arguments) < self.arity:
+        if len(arguments) < self.arity: # currying
             return NativeFunction(self.name, self.arity - len(arguments), self.function, arguments)
         else:   
             true_arguments = self.defined_arguments + arguments

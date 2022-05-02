@@ -63,10 +63,6 @@ class Interpreter(Visitor):
         self.env = Environment(standard_env)
 
 
-# In order to implement control flow as native functions I would need lazy evaluation 
-# Flow control is next up, I need that before I can make anything useful 
-
-
     def evaluate(self, expr: Expr):
         try: 
             return expr.accept(self)
@@ -153,6 +149,7 @@ def stringify(value: object):
             return value_str[0:len(value_str)-2]
     return value
 
+# Python types to jafi types 
 def to_jafi(value: object):
     if isinstance(value, int):
         return float(value)
@@ -162,6 +159,7 @@ def to_jafi(value: object):
         return [to_jafi(x) for x in value]
     return value
 
+# Jafi types to python types
 def to_python(value: object):
     if isinstance(value, list):
         if is_char_list(value):

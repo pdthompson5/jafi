@@ -7,26 +7,6 @@ from .expr import FunctionDeclaration
 from .jafi_token import Token
 from .runtime_error import RuntimeError
 
-
-
-# This will be one of the most important files. What do I need?
-"""
-Should you be able to define arguments in reverse? 
-    That would be cool. maybe +(' 1)
-Currying -> +(1) returns a function object with one of the arguments defined 
-    Each function can have its own environment, 
-    When it is called the call function defines arguments
-    If it reaches the end of the required arguments then it is evaluated
-    Otherwise a new function with the pre-defined environment is returned 
-Functions as first class objects -> That is mostly handled elsewhere 
-Native function should probably just be stored with function objects 
-
-
-I don't want functions to be able to access global variables so the only enclosing environment is the standard library?
-    What about calling other functions? 
-        That is a good point. I've changed my mind. Accessing global variables is fine 
-
-"""
 class JafiFunction(JafiCallable):
     def __init__(self, decl : FunctionDeclaration, closure: Environment, local = None) -> None:
         self.decl = decl

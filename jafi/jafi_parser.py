@@ -7,7 +7,6 @@ from .error_reporting import report_error_token
 import logging
 from typing import List
 
-# TODO: See if I can add infix operators into my grammar then just desugar them to functions 
 class Parser:
     def __init__(self, tokens: List[Token], log_level):
         logging.basicConfig()
@@ -110,7 +109,6 @@ class Parser:
         else:
             return self.infix_function_call()
 
-# TODO: Check if you can use parenthesis inside of parameter lists -> You should be able to 
 
     def infix_function_call(self):
         if self.match(TokenType.TICK):

@@ -34,8 +34,6 @@ class Jafi:
         
         tokenized_arguments = [Literal(to_jafi(argument)) for argument in args]
 
-        #TODO: Convert back into python value 
-            # Function go to string, char arrays go to Strings, numbers with trailing zeroes go to int
         return to_python(self.interpreter.evaluate(FunctionCall(name, l_value, tokenized_arguments)))
 
 
@@ -45,18 +43,11 @@ class Jafi:
         jafi_scanner = Scanner(file_contents, self.log_level)
         tokens = jafi_scanner.scan()
 
-        # for token in tokens:
-        #     print(token)
-
         parser = Parser(tokens, self.log_level)
         expressions = parser.parse()
 
         if(parser.had_error):
             sys.exit(65)
-        
-        # printer = AST_Printer()
-        # for expr in expressions:
-        #     print(printer.print(expr))
 
         eval = None
         for expr in expressions:

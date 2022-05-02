@@ -29,9 +29,6 @@ class Scanner:
             "num" : TokenType.NUMBER_TYPE,
             "str" : TokenType.STRING_TYPE,
             "bool" : TokenType.BOOL_TYPE,
-            # "list" : TokenType.LIST_TYPE,
-            # "dict" : TokenType.DICT_TYPE,
-            # "tuple" : TokenType.TUPLE_TYPE
         }
 
     def scan(self):

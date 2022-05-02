@@ -50,13 +50,3 @@ class AST_Printer(Visitor):
         string +=")"
 
         return string
-
-
-
-def test_printer():
-    printer = AST_Printer()
-    exprs = []
-    exprs.append(Literal(15))
-    for expr in exprs:
-        print(printer.print(expr))
-    pass
