@@ -7,7 +7,7 @@ from jafi.jafi import Jafi
 jafi = Jafi()
 jafi.run_file("input.jafi")
 
-print("\nnoYY")
+print("noYY")
 print(jafi.call_function("noYY", ["a", "b", "c"]))
 print(jafi.call_function("noYY", ["a", "b", "cy"]))
 print(jafi.call_function("noYY", ["xx", "ya", "zz"]))

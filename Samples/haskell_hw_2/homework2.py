@@ -7,7 +7,7 @@ from jafi.jafi import Jafi
 jafi = Jafi()
 jafi.run_file("input.jafi")
 
-print("\ndoubling")
+print("doubling")
 print(jafi.call_function("doubling", [1, 2, 3]))
 print(jafi.call_function("doubling", [6, 8, 6, 8, -1]))
 print(jafi.call_function("doubling", []))

@@ -1,0 +1,29 @@
+noNeg
+[1]
+[3, 3]
+[]
+
+no9
+[1, 2]
+[3]
+[1, 2, 3]
+
+noTeen
+[12, 20]
+[1, 1]
+[]
+
+noZ
+['aaa', 'bbb']
+['hi']
+['hello', 'are']
+
+noLong
+['not', 'too']
+['a', 'bbb']
+[]
+
+no34
+['a', 'bb']
+['a', 'bb']
+['apple']

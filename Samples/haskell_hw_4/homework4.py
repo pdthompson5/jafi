@@ -7,7 +7,7 @@ from jafi.jafi import Jafi
 jafi = Jafi()
 jafi.run_file("input.jafi")
 
-print("\nnoNeg")
+print("noNeg")
 print(jafi.call_function("noNeg", [1, -2]))
 print(jafi.call_function("noNeg", [-3, -3, 3, 3]))
 print(jafi.call_function("noNeg", [-1, -1, -1]))

@@ -1,0 +1,29 @@
+doubling
+[2, 4, 6]
+[12, 16, 12, 16, -2]
+[]
+
+square
+[1, 4, 9]
+[36, 64, 36, 64, 1]
+[]
+
+rightDigit
+[1, 2, 3]
+[6, 8, 6, 8, 1]
+[0, 0]
+
+addStar
+['a*', 'bb*', 'ccc*']
+['hello*', 'there*']
+['**']
+
+lower
+['hello', 'hi']
+['aaa', 'bbb', 'ccc']
+['kitten', 'chocolate']
+
+areIn
+['a', 'bb', 'c']
+['a', 'bb', 'c']
+[[]]

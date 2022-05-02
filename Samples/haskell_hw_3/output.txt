@@ -1,0 +1,14 @@
+math1
+[20, 30, 40]
+[70, 90, 70, 90, 20]
+[110]
+
+moreY
+['yay', 'yby', 'ycy']
+['yhelloy', 'ytherey']
+['yyayy']
+
+copies4
+['aaaa', 'bbbbbbbb', 'cccccccccccc']
+['24242424', 'aaaa', []]
+['hellohellohellohello', 'theretheretherethere']
